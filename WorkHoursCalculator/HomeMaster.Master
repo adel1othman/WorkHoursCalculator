@@ -1,0 +1,43 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HomeMaster.master.cs" Inherits="WorkHoursCalculator.HomeMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        #headerDiv {
+            right: 14px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div ID="headerDiv" style="position: fixed">
+            <table>
+                <tr>
+                    <td>
+                        <asp:TextBox ID="TextBox1" runat="server">User name</asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server" Text="Password"></asp:TextBox>
+            &nbsp;&nbsp;&nbsp;
+            <asp:HyperLink ID="HyperLink1" runat="server">Login</asp:HyperLink>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:HyperLink ID="HyperLink2" runat="server">Sign up</asp:HyperLink>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
