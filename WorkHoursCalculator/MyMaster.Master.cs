@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WorkHoursCalculator
 {
-    public partial class HomeMaster : System.Web.UI.MasterPage
+    public partial class MyMaster : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

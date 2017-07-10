@@ -68,7 +68,7 @@
   <ItemGroup>
     <Content Include="Advanced.aspx" />
     <Content Include="packages.config" />
-    <Content Include="HomeMaster.Master" />
+    <Content Include="MyMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -89,12 +89,12 @@
     <Compile Include="Advanced.aspx.designer.cs">
       <DependentUpon>Advanced.aspx</DependentUpon>
     </Compile>
-    <Compile Include="HomeMaster.Master.cs">
-      <DependentUpon>HomeMaster.Master</DependentUpon>
+    <Compile Include="MyMaster.Master.cs">
+      <DependentUpon>MyMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="HomeMaster.Master.designer.cs">
-      <DependentUpon>HomeMaster.Master</DependentUpon>
+    <Compile Include="MyMaster.Master.designer.cs">
+      <DependentUpon>MyMaster.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
