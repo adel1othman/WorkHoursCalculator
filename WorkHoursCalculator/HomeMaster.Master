@@ -12,6 +12,9 @@
         #headerDiv {
             right: 14px;
         }
+        .auto-style1 {
+            height: 30px;
+        }
     </style>
 </head>
 <body>
@@ -19,9 +22,9 @@
         <div ID="headerDiv" style="position: fixed">
             <table>
                 <tr>
-                    <td>
-                        <asp:TextBox ID="TextBox1" runat="server">User name</asp:TextBox>
-            <asp:TextBox ID="TextBox2" runat="server" Text="Password"></asp:TextBox>
+                    <td class="auto-style1">
+                        <asp:TextBox ID="TextBox1" runat="server" placeholder="User name"></asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server" placeholder="Password"></asp:TextBox>
             &nbsp;&nbsp;&nbsp;
             <asp:HyperLink ID="HyperLink1" runat="server">Login</asp:HyperLink>
                     </td>
@@ -33,6 +36,10 @@
                 </tr>
             </table>
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
 
