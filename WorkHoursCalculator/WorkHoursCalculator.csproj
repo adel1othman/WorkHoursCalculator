@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Advanced.aspx" />
+    <Content Include="Basic.aspx" />
     <Content Include="packages.config" />
     <Content Include="MyMaster.Master" />
     <None Include="Web.Debug.config">
@@ -88,6 +89,13 @@
     </Compile>
     <Compile Include="Advanced.aspx.designer.cs">
       <DependentUpon>Advanced.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Basic.aspx.cs">
+      <DependentUpon>Basic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Basic.aspx.designer.cs">
+      <DependentUpon>Basic.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyMaster.Master.cs">
       <DependentUpon>MyMaster.Master</DependentUpon>
