@@ -83,6 +83,8 @@
 										<input type="password" />
 										<br />
 
+                            
+
 										<div class="checkbox">
 												<input id="remember" type="checkbox" />
 												<label for="remember">Remember me on this computer</label>
@@ -117,8 +119,8 @@
 										</div>
 
 										<div class="action_btns">
-												<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-												<div class="one_half last"><a href="#" class="btn btn_red">Register</a></div>
+                                            <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
+                                            <div class="one_half last"><a class="btn btn_red"><asp:Button ID="btnRegister" runat="server" Text="Register" BorderStyle="None" BackColor="Transparent" Height="100%" style="margin-top: 0px" Width="100%" /></a></div>
 										</div>
 						</div>
 				</section>
