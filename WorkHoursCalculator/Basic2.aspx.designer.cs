@@ -10,16 +10,16 @@
 namespace WorkHoursCalculator {
     
     
-    public partial class Advanced {
+    public partial class Basic2 {
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// TbxWorkedHouresOnThisDay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.TextBox TbxWorkedHouresOnThisDay;
         
         /// <summary>
         /// Calendar1 control.
@@ -31,6 +31,15 @@ namespace WorkHoursCalculator {
         protected global::System.Web.UI.WebControls.Calendar Calendar1;
         
         /// <summary>
+        /// TbxHourPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TbxHourPrice;
+        
+        /// <summary>
         /// ddlMode control.
         /// </summary>
         /// <remarks>
@@ -40,30 +49,21 @@ namespace WorkHoursCalculator {
         protected global::System.Web.UI.WebControls.DropDownList ddlMode;
         
         /// <summary>
-        /// ddlCurrency control.
+        /// TbxTotalHours control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCurrency;
+        protected global::System.Web.UI.WebControls.TextBox TbxTotalHours;
         
         /// <summary>
-        /// Button3 control.
+        /// TbxTotalEarnings control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
-        
-        /// <summary>
-        /// btnCalculate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCalculate;
+        protected global::System.Web.UI.WebControls.TextBox TbxTotalEarnings;
     }
 }
