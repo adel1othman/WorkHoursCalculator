@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="Advanced.aspx" />
     <Content Include="Basic2.aspx" />
+    <Content Include="modal.js" />
     <Content Include="packages.config" />
     <Content Include="MyMaster.Master" />
     <None Include="Web.Debug.config">
@@ -78,6 +79,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

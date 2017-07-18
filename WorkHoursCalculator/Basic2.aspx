@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:TextBox ID="TbxWorkedHouresOnThisDay" runat="server" Width="180px">Worked Houres On This Day</asp:TextBox>
-    <asp:Calendar ID="Calendar1" runat="server" style="top: 23px; left: 742px; float: right; height: 188px; width: 513px; margin-right: 150px;" ></asp:Calendar>
+    <asp:Calendar ID="Calendar1" runat="server" style="top: 23px; left: 1100px; float: right;; height: 188px; width: 513px;"></asp:Calendar>
     <br />
     <br />
     <br />
@@ -23,4 +23,12 @@
     <br />
     <br />
     <asp:TextBox ID="TbxTotalEarnings" runat="server" Width="180px">Total Earnings</asp:TextBox>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
 </asp:Content>
