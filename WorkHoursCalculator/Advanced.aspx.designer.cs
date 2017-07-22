@@ -13,31 +13,13 @@ namespace WorkHoursCalculator {
     public partial class Advanced {
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// MyAwesomeCalendar1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
-        /// Calendar1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
-        
-        /// <summary>
-        /// ddlMode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMode;
+        protected global::MyAwesomeCalendar.MyAwesomeCalendar MyAwesomeCalendar1;
         
         /// <summary>
         /// ddlCurrency control.
