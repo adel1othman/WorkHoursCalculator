@@ -3,7 +3,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:TextBox ID="TbxWorkedHouresOnThisDay" runat="server" Width="180px">Worked Houres On This Day</asp:TextBox>
-    <asp:Calendar ID="Calendar1" runat="server" style="top: 23px; left: 1100px; float: right;; height: 188px; width: 513px;"></asp:Calendar>
+    <asp:Calendar ID="Calendar1" runat="server" style="top: 23px; left: 1100px; float: right; height: 188px; width: 513px;" SelectedDate="<%# DateTime.Today %>" OnSelectionChanged="Calendar1_SelectionChanged" >
+        <SelectedDayStyle BackColor="#6699FF" />
+        <TodayDayStyle BackColor="#FFFFCC" />
+    </asp:Calendar>
     <br />
     <br />
     <br />
@@ -26,6 +29,7 @@
     <br />
     <br />
     <br />
+    <asp:Button ID="BtnSaveChanges" runat="server" Text="SaveChanges" OnClick="BtnSaveChanges_Click" />
     <br />
     <br />
     <br />
