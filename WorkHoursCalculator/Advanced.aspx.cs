@@ -13,7 +13,7 @@ namespace WorkHoursCalculator
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)

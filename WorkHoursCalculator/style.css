@@ -166,7 +166,8 @@ a.btn_red {
 
     .action_btns a {
         display: block;
-    }
+    height: 29px;
+}
 /* User Login Form */
 
 .user_login {

@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MyMaster.master" AutoEventWireup="true" CodeBehind="Advanced.aspx.cs" Inherits="WorkHoursCalculator.Advanced" %>
+<%@ Register assembly="MyAwesomeCalendar" namespace="MyAwesomeCalendar" tagprefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>
+    
     <script type="text/javascript">
         function ShowInfo(id) {
             var div = document.getElementById(id);
@@ -14,35 +14,10 @@
             div.style.display = "none";
         }
     </script>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <ContentTemplate>
-                <fieldset>
-                <legend>Browse your calculations</legend>
-                <asp:Calendar ID="Calendar1" runat="server" ondayrender="Calendar1_DayRender">
-                 <SelectedDayStyle BackColor="#71BFD9" Font-Bold="True" />
-            <SelectorStyle BackColor="#FFCC66" />
-            <OtherMonthDayStyle ForeColor="Gray" />
-            <NextPrevStyle Font-Size="9pt" ForeColor="white" />
-            <TitleStyle
-                BorderStyle="solid" BorderColor="#71BFD9" BorderWidth="1px"
-                BackColor="#71BFD9" Font-Bold="True" Font-Size="9pt"
-                ForeColor="white" />
-            <DayHeaderStyle BorderStyle="solid" BorderColor="#71BFD9" BorderWidth="1px"
-                BackColor="#FECC58" Font-Bold="True"
-                Height="1px" ForeColor="#FFFFCC" Font-Size="9pt" />
-                </asp:Calendar>
 
-                </fieldset>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-    <br />
-    <br />
-    <br />
-    <asp:DropDownList ID="ddlMode" runat="server">
-        <asp:ListItem>For 1 day</asp:ListItem>
-        <asp:ListItem>For 1 month</asp:ListItem>
-        <asp:ListItem>For a year</asp:ListItem>
-    </asp:DropDownList>
+
+    
+    <cc1:MyAwesomeCalendar ID="MyAwesomeCalendar1" runat="server" />
     <br />
     <br />
     <br />
