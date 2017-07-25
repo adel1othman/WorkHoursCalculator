@@ -138,21 +138,7 @@
 												<label for="send_updates">Send me occasional email updates</label>
 										</div>
 
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorUN" runat="server" ErrorMessage="Username field is required" ControlToValidate="Username2" Enabled="False"></asp:RequiredFieldValidator>
-                            <br />
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidatorUN" runat="server" ErrorMessage="Username ERROR" ControlToValidate="Username2" ValidationExpression="[a-zA-Z0-9_\-]{6,30}" Enabled="False"></asp:RegularExpressionValidator>
-                            <br />
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorE" runat="server" ErrorMessage="Email field is required" ControlToValidate="Email" Enabled="False"></asp:RequiredFieldValidator>
-                            <br />
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidatorE" runat="server" ErrorMessage="Email ERROR" ControlToValidate="Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Enabled="False"></asp:RegularExpressionValidator>
-                            <br />
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorP" runat="server" ErrorMessage="Password field is required" ControlToValidate="Password1" Enabled="False"></asp:RequiredFieldValidator>
-                            <br />
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidatorP" runat="server" ErrorMessage="Password ERROR" ControlToValidate="Password1" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,40}$" Enabled="False"></asp:RegularExpressionValidator>
-                            <br />
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1PC" runat="server" ErrorMessage="Confirm password field is required" ControlToValidate="Password2" Enabled="False"></asp:RequiredFieldValidator>
-                            <br />
-                            <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Password does not match the confirm password" ControlToCompare="Password1" ControlToValidate="Password2" Enabled="False"></asp:CompareValidator>
+                                        <asp:Label ID="lblError" runat="server" Text="Label" ForeColor="Red" Visible="False"></asp:Label>
 
 										<div class="action_btns">
                                             <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>

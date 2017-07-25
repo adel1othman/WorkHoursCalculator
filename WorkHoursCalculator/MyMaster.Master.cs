@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,6 +14,7 @@ namespace WorkHoursCalculator
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblError.Visible = false;
             if (Session["Korisnici"] != null)
             {
                 container.Visible = false;
@@ -45,51 +47,38 @@ namespace WorkHoursCalculator
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
-            string Username = Username2.Value;
+            Regex rUser = new Regex(@"[a-zA-Z0-9_\-]{6,20}");
+
+            string username = Username2.Value;
             string email = Email.Value;
-            string password = Password2.Value;
-            SqlCommand cmd = new SqlCommand("insert into Korisnici values(@fullname, @password, @email)", con);
-            cmd.Parameters.AddWithValue("@fullname", Username);
-            cmd.Parameters.AddWithValue("@password", password);
-            cmd.Parameters.AddWithValue("@email", email);
-
-            con.Open();
-
-            int rowsAffected = cmd.ExecuteNonQuery();
-
-            con.Close();
+            string password = Password1.Value;
             
-            if (rowsAffected != 0)
+            if (rUser.IsMatch(username))
             {
-                Session.Add("Korisnici", Username);
-                Response.Redirect("Advanced.aspx");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+                SqlCommand cmd = new SqlCommand("insert into Korisnici values(@username, @password, @email)", con);
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@email", email);
+
+                con.Open();
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                con.Close();
+
+                if (rowsAffected != 0)
+                {
+                    Session.Add("Korisnici", username);
+                    Response.Redirect("Advanced.aspx");
+                }
+            }
+            else
+            {
+                lblError.Text = "Username must have 6-20 caracter";
+                lblError.Visible = true;
             }
         }
-
-        //private void MyValidationEnabled()
-        //{
-        //    RequiredFieldValidatorUN.Enabled = true;
-        //    RequiredFieldValidatorE.Enabled = true;
-        //    RequiredFieldValidatorP.Enabled = true;
-        //    RequiredFieldValidator1PC.Enabled = true;
-        //    CompareValidator1.Enabled = true;
-        //    RegularExpressionValidatorUN.Enabled = true;
-        //    RegularExpressionValidatorE.Enabled = true;
-        //    RegularExpressionValidatorP.Enabled = true;
-        //}
-
-        //private void MyValidationDisabled()
-        //{
-        //    RequiredFieldValidatorUN.Enabled = false;
-        //    RequiredFieldValidatorE.Enabled = false;
-        //    RequiredFieldValidatorP.Enabled = false;
-        //    RequiredFieldValidator1PC.Enabled = false;
-        //    CompareValidator1.Enabled = false;
-        //    RegularExpressionValidatorUN.Enabled = false;
-        //    RegularExpressionValidatorE.Enabled = false;
-        //    RegularExpressionValidatorP.Enabled = false;
-        //}
 
         protected void BtnLogout_Click(object sender, EventArgs e)
         {
