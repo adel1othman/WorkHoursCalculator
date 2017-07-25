@@ -14,7 +14,6 @@ namespace WorkHoursCalculator
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblError.Visible = false;
             if (Session["Korisnici"] != null)
             {
                 container.Visible = false;
@@ -47,36 +46,26 @@ namespace WorkHoursCalculator
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            Regex rUser = new Regex(@"[a-zA-Z0-9_\-]{6,20}");
-
             string username = Username2.Value;
             string email = Email.Value;
             string password = Password1.Value;
-            
-            if (rUser.IsMatch(username))
+
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+            SqlCommand cmd = new SqlCommand("insert into Korisnici values(@username, @password, @email)", con);
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@password", password);
+            cmd.Parameters.AddWithValue("@email", email);
+
+            con.Open();
+
+            int rowsAffected = cmd.ExecuteNonQuery();
+
+            con.Close();
+
+            if (rowsAffected != 0)
             {
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
-                SqlCommand cmd = new SqlCommand("insert into Korisnici values(@username, @password, @email)", con);
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
-                cmd.Parameters.AddWithValue("@email", email);
-
-                con.Open();
-
-                int rowsAffected = cmd.ExecuteNonQuery();
-
-                con.Close();
-
-                if (rowsAffected != 0)
-                {
-                    Session.Add("Korisnici", username);
-                    Response.Redirect("Advanced.aspx");
-                }
-            }
-            else
-            {
-                lblError.Text = "Username must have 6-20 caracter";
-                lblError.Visible = true;
+                Session.Add("Korisnici", username);
+                Response.Redirect("Advanced.aspx");
             }
         }
 

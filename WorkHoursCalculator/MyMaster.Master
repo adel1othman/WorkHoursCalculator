@@ -117,20 +117,19 @@
 
 						<!-- Register Form -->
 						<div class="user_register">
-										<label>Username</label>
-										<input type="text" id="Username2" runat="server"/>
+										<input type="text" id="Username2" runat="server" pattern="[a-zA-Z0-9_\-]{6,20}" placeholder="Username" required oninvalid="this.setCustomValidity('Username must have 6-20 caracter, and can include a-z, A-z, 0-9 and -_')"
+    oninput="setCustomValidity('')"/>
 										<br />
 
-										<label>Email Address</label>
-										<input type="email" id="Email" runat="server"/>
+										<input type="email" id="Email" runat="server" pattern="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" placeholder="Email Address" required oninvalid="this.setCustomValidity('Entered Email have invalid format')"
+    oninput="setCustomValidity('')"/>
+										<br />
+                            
+										<input type="password" id="Password1" runat="server" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,40}$" placeholder="Password" required oninvalid="this.setCustomValidity('Password must have 8-40 caracter')"
+    oninput="setCustomValidity('')"/>
 										<br />
 
-										<label>Password</label>
-										<input type="password" id="Password1" runat="server"/>
-										<br />
-
-                                        <label>Confirm Password</label>
-										<input type="password" id="Password2" runat="server"/>
+										<input type="password" id="Password2" runat="server" placeholder="Confirm Password" required/>
 										<br />
 
 										<div class="checkbox">
@@ -138,12 +137,26 @@
 												<label for="send_updates">Send me occasional email updates</label>
 										</div>
 
-                                        <asp:Label ID="lblError" runat="server" Text="Label" ForeColor="Red" Visible="False"></asp:Label>
-
 										<div class="action_btns">
                                             <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
                                             <div class="one_half last"><a class="btn btn_red"><asp:Button ID="btnRegister" runat="server" Text="Register" BorderStyle="None" BackColor="Transparent" Height="100%" style="margin-top: 0px" Width="100%" OnClick="btnRegister_Click" /></a></div>
 										</div>
+
+                            <script type="text/javascript">
+                                var password = document.getElementById("Password1")
+                                    , confirm_password = document.getElementById("Password2");
+
+                                function validatePassword() {
+                                    if (password.value != confirm_password.value) {
+                                        confirm_password.setCustomValidity("Passwords Don't Match");
+                                    } else {
+                                        confirm_password.setCustomValidity('');
+                                    }
+                                }
+
+                                password.onchange = validatePassword;
+                                confirm_password.onkeyup = validatePassword;
+                            </script>
 						</div>
 				</section>
 		</div>
