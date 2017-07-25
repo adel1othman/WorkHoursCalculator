@@ -18,7 +18,7 @@ namespace WorkHoursCalculator
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {   //Promijenite con
-            SqlConnection con = new SqlConnection(@"Data Source=Server;Initial Catalog=Baza;Integrated Security=True;Pooling=False");
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
             con.Open();
             SqlCommand cmd = new SqlCommand("select * from Korisnici where Korisnicko_ime =@username and Lozinka=@password", con);
             string myUsername = Username.Value;

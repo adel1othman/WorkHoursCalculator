@@ -17,8 +17,7 @@
     <AssemblyName>WorkHoursCalculator</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44393</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
@@ -50,7 +49,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MyAwesomeCalendar">
-      <HintPath>..\..\..\..\Visual Studio 2017\Projects\MyAwesomeCalendar\MyAwesomeCalendar\bin\Debug\MyAwesomeCalendar.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\MyAwesomeCalendar.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
