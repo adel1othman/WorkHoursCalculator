@@ -31,6 +31,7 @@ namespace WorkHoursCalculator
             if (dt.Rows.Count > 0)
             {
                 Session.Add("Korisnici", Username);
+                // ovdje treba ići na koju stranicu da redirekta po loginu
                 Response.Redirect("Advanced.aspx");
 
             }
@@ -39,6 +40,15 @@ namespace WorkHoursCalculator
         protected void btnRegister_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void BtnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
+            // ovdje treba ići na koju stranicu da redirekta po logoutu (zasad je login i logout postavljen ovako da se vidi da radi nešto)
+            Response.Redirect("Basic2.aspx");
         }
     }
 }

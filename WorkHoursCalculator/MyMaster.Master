@@ -30,7 +30,15 @@
     height: auto;
     left: 52%;
     top: 20px;
-    background: #F4F4F2;;
+    background: #F4F4F2;
+        }
+         .auto-style6 {
+            position: absolute;
+    width: 80px;
+    height: auto;
+    left: 90%;
+    top: 20px;
+    background: #F4F4F2;
         }
     </style>
 </head>
@@ -128,6 +136,7 @@
 </div>
         <asp:Button ID="Button1" runat="server" Text="Basic" CssClass="auto-style4" PostBackUrl="~/Basic2.aspx" />
          <asp:Button ID="Button2" runat="server" Text="Advanced" CssClass="auto-style5" PostBackUrl="~/Advanced.aspx" />
+        <asp:Button ID="BtnLogout" runat="server" Text="Logout" CssClass="auto-style6" PostBackUrl="~/Advanced.aspx" OnClick="BtnLogout_Click" />
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
