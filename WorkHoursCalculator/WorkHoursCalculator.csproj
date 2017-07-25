@@ -48,9 +48,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MyAwesomeCalendar">
-      <HintPath>..\..\..\..\Downloads\MyAwesomeCalendar.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -72,7 +69,6 @@
     <Content Include="Advanced.aspx" />
     <Content Include="Basic2.aspx" />
     <Content Include="modal.js" />
-    <Content Include="MyCalendarScript.js" />
     <Content Include="packages.config" />
     <Content Include="MyMaster.Master" />
     <None Include="Web.Debug.config">

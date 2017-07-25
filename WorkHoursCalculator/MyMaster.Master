@@ -40,16 +40,24 @@
     top: 20px;
     background: #F4F4F2;
         }
+         .lblWelcomeStyle {
+            position: absolute;
+    width: auto;
+    height: auto;
+    left: 80%;
+    top: 20px;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManagerMaster" runat="server">
         </asp:ScriptManager>
-        <div class="container">
+
+        <div id="container" class="container" runat="server">
 		<a id="modal_trigger" href="#modal" class="btn">Click here to Login or register</a>
             <script src="modal.js"></script>
-		<div id="modal" class="popupContainer" style="display:none;">
+            <div id="modal" class="popupContainer" style="display:none;">
 				<header class="popupHeader">
 						<span class="header_title">Login</span>
 						<span class="modal_close"><i class="fa fa-times"></i></span>
@@ -109,8 +117,8 @@
 
 						<!-- Register Form -->
 						<div class="user_register">
-										<label>Full Name</label>
-										<input type="text" id="FullName" runat="server"/>
+										<label>Username</label>
+										<input type="text" id="Username2" runat="server"/>
 										<br />
 
 										<label>Email Address</label>
@@ -118,6 +126,10 @@
 										<br />
 
 										<label>Password</label>
+										<input type="password" id="Password1" runat="server"/>
+										<br />
+
+                                        <label>Confirm Password</label>
 										<input type="password" id="Password2" runat="server"/>
 										<br />
 
@@ -125,6 +137,22 @@
 												<input id="send_updates" type="checkbox" />
 												<label for="send_updates">Send me occasional email updates</label>
 										</div>
+
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorUN" runat="server" ErrorMessage="Username field is required" ControlToValidate="Username2" Enabled="False"></asp:RequiredFieldValidator>
+                            <br />
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidatorUN" runat="server" ErrorMessage="Username ERROR" ControlToValidate="Username2" ValidationExpression="[a-zA-Z0-9_\-]{6,30}" Enabled="False"></asp:RegularExpressionValidator>
+                            <br />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorE" runat="server" ErrorMessage="Email field is required" ControlToValidate="Email" Enabled="False"></asp:RequiredFieldValidator>
+                            <br />
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidatorE" runat="server" ErrorMessage="Email ERROR" ControlToValidate="Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Enabled="False"></asp:RegularExpressionValidator>
+                            <br />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorP" runat="server" ErrorMessage="Password field is required" ControlToValidate="Password1" Enabled="False"></asp:RequiredFieldValidator>
+                            <br />
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidatorP" runat="server" ErrorMessage="Password ERROR" ControlToValidate="Password1" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,40}$" Enabled="False"></asp:RegularExpressionValidator>
+                            <br />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1PC" runat="server" ErrorMessage="Confirm password field is required" ControlToValidate="Password2" Enabled="False"></asp:RequiredFieldValidator>
+                            <br />
+                            <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Password does not match the confirm password" ControlToCompare="Password1" ControlToValidate="Password2" Enabled="False"></asp:CompareValidator>
 
 										<div class="action_btns">
                                             <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
@@ -136,7 +164,9 @@
 </div>
         <asp:Button ID="Button1" runat="server" Text="Basic" CssClass="auto-style4" PostBackUrl="~/Basic2.aspx" />
          <asp:Button ID="Button2" runat="server" Text="Advanced" CssClass="auto-style5" PostBackUrl="~/Advanced.aspx" />
-        <asp:Button ID="BtnLogout" runat="server" Text="Logout" CssClass="auto-style6" PostBackUrl="~/Advanced.aspx" OnClick="BtnLogout_Click" />
+        <asp:Button ID="BtnLogout" runat="server" Text="Logout" CssClass="auto-style6" PostBackUrl="~/Advanced.aspx" OnClick="BtnLogout_Click" Visible="False" />
+        <asp:Label ID="LblWelcome" runat="server" Text="Label" CssClass="lblWelcomeStyle" Visible="False" />
+        
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
