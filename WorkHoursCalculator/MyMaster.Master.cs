@@ -67,29 +67,29 @@ namespace WorkHoursCalculator
             }
         }
 
-        private void MyValidationEnabled()
-        {
-            RequiredFieldValidatorUN.Enabled = true;
-            RequiredFieldValidatorE.Enabled = true;
-            RequiredFieldValidatorP.Enabled = true;
-            RequiredFieldValidator1PC.Enabled = true;
-            CompareValidator1.Enabled = true;
-            RegularExpressionValidatorUN.Enabled = true;
-            RegularExpressionValidatorE.Enabled = true;
-            RegularExpressionValidatorP.Enabled = true;
-        }
+        //private void MyValidationEnabled()
+        //{
+        //    RequiredFieldValidatorUN.Enabled = true;
+        //    RequiredFieldValidatorE.Enabled = true;
+        //    RequiredFieldValidatorP.Enabled = true;
+        //    RequiredFieldValidator1PC.Enabled = true;
+        //    CompareValidator1.Enabled = true;
+        //    RegularExpressionValidatorUN.Enabled = true;
+        //    RegularExpressionValidatorE.Enabled = true;
+        //    RegularExpressionValidatorP.Enabled = true;
+        //}
 
-        private void MyValidationDisabled()
-        {
-            RequiredFieldValidatorUN.Enabled = false;
-            RequiredFieldValidatorE.Enabled = false;
-            RequiredFieldValidatorP.Enabled = false;
-            RequiredFieldValidator1PC.Enabled = false;
-            CompareValidator1.Enabled = false;
-            RegularExpressionValidatorUN.Enabled = false;
-            RegularExpressionValidatorE.Enabled = false;
-            RegularExpressionValidatorP.Enabled = false;
-        }
+        //private void MyValidationDisabled()
+        //{
+        //    RequiredFieldValidatorUN.Enabled = false;
+        //    RequiredFieldValidatorE.Enabled = false;
+        //    RequiredFieldValidatorP.Enabled = false;
+        //    RequiredFieldValidator1PC.Enabled = false;
+        //    CompareValidator1.Enabled = false;
+        //    RegularExpressionValidatorUN.Enabled = false;
+        //    RegularExpressionValidatorE.Enabled = false;
+        //    RegularExpressionValidatorP.Enabled = false;
+        //}
 
         protected void BtnLogout_Click(object sender, EventArgs e)
         {
