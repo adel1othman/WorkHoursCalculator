@@ -21,6 +21,10 @@
 
     
     <br />
+    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    <br />
+    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+    <br />
     <br />
     <br />
     <asp:DropDownList ID="ddlCurrency" runat="server">
