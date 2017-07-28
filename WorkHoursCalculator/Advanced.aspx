@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MyMaster.master" AutoEventWireup="true" CodeBehind="Advanced.aspx.cs" Inherits="WorkHoursCalculator.Advanced" %>
-<%@ Register assembly="MyAwesomeCalendar" namespace="MyAwesomeCalendar" tagprefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -17,8 +16,12 @@
 
 
     
-    <cc1:MyAwesomeCalendar ID="MyAwesomeCalendar1" runat="server" />
+    <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+
+
+    
     <br />
+    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
     <br />
     <br />
     <asp:DropDownList ID="ddlCurrency" runat="server">

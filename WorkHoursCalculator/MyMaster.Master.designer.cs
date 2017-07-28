@@ -40,6 +40,15 @@ namespace WorkHoursCalculator {
         protected global::System.Web.UI.ScriptManager ScriptManagerMaster;
         
         /// <summary>
+        /// container control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl container;
+        
+        /// <summary>
         /// Username control.
         /// </summary>
         /// <remarks>
@@ -67,13 +76,13 @@ namespace WorkHoursCalculator {
         protected global::System.Web.UI.WebControls.Button btnLogin;
         
         /// <summary>
-        /// FullName control.
+        /// Username2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText FullName;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Username2;
         
         /// <summary>
         /// Email control.
@@ -83,6 +92,15 @@ namespace WorkHoursCalculator {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Email;
+        
+        /// <summary>
+        /// Password1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword Password1;
         
         /// <summary>
         /// Password2 control.
@@ -128,6 +146,15 @@ namespace WorkHoursCalculator {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnLogout;
+        
+        /// <summary>
+        /// LblWelcome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblWelcome;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

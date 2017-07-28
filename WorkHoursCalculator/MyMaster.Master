@@ -40,16 +40,24 @@
     top: 20px;
     background: #F4F4F2;
         }
+         .lblWelcomeStyle {
+            position: absolute;
+    width: auto;
+    height: auto;
+    left: 80%;
+    top: 20px;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManagerMaster" runat="server">
         </asp:ScriptManager>
-        <div class="container">
+
+        <div id="container" class="container" runat="server">
 		<a id="modal_trigger" href="#modal" class="btn">Click here to Login or register</a>
             <script src="modal.js"></script>
-		<div id="modal" class="popupContainer" style="display:none;">
+            <div id="modal" class="popupContainer" style="display:none;">
 				<header class="popupHeader">
 						<span class="header_title">Login</span>
 						<span class="modal_close"><i class="fa fa-times"></i></span>
@@ -109,16 +117,19 @@
 
 						<!-- Register Form -->
 						<div class="user_register">
-										<label>Full Name</label>
-										<input type="text" id="FullName" runat="server"/>
+										<input type="text" id="Username2" runat="server" pattern="[a-zA-Z0-9_\-]{6,20}" placeholder="Username" required oninvalid="this.setCustomValidity('Username must have 6-20 caracter, and can include a-z, A-z, 0-9 and -_')"
+    oninput="setCustomValidity('')"/>
 										<br />
 
-										<label>Email Address</label>
-										<input type="email" id="Email" runat="server"/>
+										<input type="email" id="Email" runat="server" pattern="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" placeholder="Email Address" required oninvalid="this.setCustomValidity('Entered Email have invalid format')"
+    oninput="setCustomValidity('')"/>
+										<br />
+                            
+										<input type="password" id="Password1" runat="server" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,40}$" placeholder="Password" required oninvalid="this.setCustomValidity('Password must have 8-40 caracter')"
+    oninput="setCustomValidity('')"/>
 										<br />
 
-										<label>Password</label>
-										<input type="password" id="Password2" runat="server"/>
+										<input type="password" id="Password2" runat="server" placeholder="Confirm Password" required/>
 										<br />
 
 										<div class="checkbox">
@@ -130,13 +141,31 @@
                                             <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
                                             <div class="one_half last"><a class="btn btn_red"><asp:Button ID="btnRegister" runat="server" Text="Register" BorderStyle="None" BackColor="Transparent" Height="100%" style="margin-top: 0px" Width="100%" OnClick="btnRegister_Click" /></a></div>
 										</div>
+
+                            <script type="text/javascript">
+                                var password = document.getElementById("Password1")
+                                    , confirm_password = document.getElementById("Password2");
+
+                                function validatePassword() {
+                                    if (password.value != confirm_password.value) {
+                                        confirm_password.setCustomValidity("Passwords Don't Match");
+                                    } else {
+                                        confirm_password.setCustomValidity('');
+                                    }
+                                }
+
+                                password.onchange = validatePassword;
+                                confirm_password.onkeyup = validatePassword;
+                            </script>
 						</div>
 				</section>
 		</div>
 </div>
         <asp:Button ID="Button1" runat="server" Text="Basic" CssClass="auto-style4" PostBackUrl="~/Basic2.aspx" />
          <asp:Button ID="Button2" runat="server" Text="Advanced" CssClass="auto-style5" PostBackUrl="~/Advanced.aspx" />
-        <asp:Button ID="BtnLogout" runat="server" Text="Logout" CssClass="auto-style6" PostBackUrl="~/Advanced.aspx" OnClick="BtnLogout_Click" />
+        <asp:Button ID="BtnLogout" runat="server" Text="Logout" CssClass="auto-style6" PostBackUrl="~/Advanced.aspx" OnClick="BtnLogout_Click" Visible="False" />
+        <asp:Label ID="LblWelcome" runat="server" Text="Label" CssClass="lblWelcomeStyle" Visible="False" />
+        
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
