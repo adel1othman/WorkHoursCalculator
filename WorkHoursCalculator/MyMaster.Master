@@ -88,8 +88,8 @@
 										<div class="one_half last"><a href="#" id="register_form" class="btn">Sign up</a></div>
 								</div>
 						</div>
-
-						<!-- Username & Password Login form -->
+                    <Form>
+                        <!-- Username & Password Login form -->
 						<div class="user_login">
 										<label>Email / Username</label>
 										<input type="text" id="Username" runat="server"/>
@@ -114,19 +114,18 @@
 
 								<a href="#" class="forgot_password">Forgot password?</a>
 						</div>
-
-						<!-- Register Form -->
+                    </Form>
+						
+                    <Form>
+                        <!-- Register Form -->
 						<div class="user_register">
-										<input type="text" id="Username2" runat="server" pattern="[a-zA-Z0-9_\-]{6,20}" placeholder="Username" required oninvalid="this.setCustomValidity('Username must have 6-20 caracter, and can include a-z, A-z, 0-9 and -_')"
-    oninput="setCustomValidity('')"/>
+										<input type="text" id="Username2" runat="server" pattern="[a-zA-Z0-9_\-]{6,20}" title="Username must have 6-20 caracter, and can include a-z, A-z, 0-9 and -_" placeholder="Username" required />
 										<br />
 
-										<input type="email" id="Email" runat="server" pattern="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" placeholder="Email Address" required oninvalid="this.setCustomValidity('Entered Email have invalid format')"
-    oninput="setCustomValidity('')"/>
+										<input type="email" id="Email" runat="server" pattern="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" title="Entered Email have invalid format" placeholder="Email Address" required />
 										<br />
                             
-										<input type="password" id="Password1" runat="server" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,40}$" placeholder="Password" required oninvalid="this.setCustomValidity('Password must have 8-40 caracter')"
-    oninput="setCustomValidity('')"/>
+										<input type="password" id="Password1" runat="server" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,40}$" title="Password must have 8-40 caracter" placeholder="Password" required />
 										<br />
 
 										<input type="password" id="Password2" runat="server" placeholder="Confirm Password" required/>
@@ -136,12 +135,7 @@
 												<input id="send_updates" type="checkbox" />
 												<label for="send_updates">Send me occasional email updates</label>
 										</div>
-
-										<div class="action_btns">
-                                            <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-                                            <div class="one_half last"><a class="btn btn_red"><asp:Button ID="btnRegister" runat="server" Text="Register" BorderStyle="None" BackColor="Transparent" Height="100%" style="margin-top: 0px" Width="100%" OnClick="btnRegister_Click" /></a></div>
-										</div>
-
+                            
                             <script type="text/javascript">
                                 var password = document.getElementById("Password1")
                                     , confirm_password = document.getElementById("Password2");
@@ -157,7 +151,14 @@
                                 password.onchange = validatePassword;
                                 confirm_password.onkeyup = validatePassword;
                             </script>
+
+										<div class="action_btns">
+                                            <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
+                                            <div class="one_half last"><a class="btn btn_red"><asp:Button ID="btnRegister" runat="server" Text="Register" BorderStyle="None" BackColor="Transparent" Height="100%" style="margin-top: 0px" Width="100%" OnClick="btnRegister_Click" /></a></div>
+										</div>
 						</div>
+                    </Form>
+						
 				</section>
 		</div>
 </div>
