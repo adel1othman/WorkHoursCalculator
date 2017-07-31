@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MyMaster.master" enableEventValidation="false" AutoEventWireup="true" CodeBehind="Advanced.aspx.cs" Inherits="WorkHoursCalculator.Advanced" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MyMaster.master" AutoEventWireup="true" CodeBehind="Advanced.aspx.cs" Inherits="WorkHoursCalculator.Advanced" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -16,7 +16,16 @@
 
 
     
-    <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+    <asp:DropDownList ID="ddlSelection" runat="server" AutoPostBack="True">
+        <asp:ListItem>1 Day</asp:ListItem>
+        <asp:ListItem>Multiple Days</asp:ListItem>
+    </asp:DropDownList>
+    <br />
+    <br />
+
+
+    
+    <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
 
 
     
