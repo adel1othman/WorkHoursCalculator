@@ -13,7 +13,10 @@ namespace WorkHoursCalculator
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Korisnici"] == null)
+            {
+                Response.Redirect("Default.aspx");
+            }
         }
 
         protected void BtnSaveChanges_Click(object sender, EventArgs e)

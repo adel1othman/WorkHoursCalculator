@@ -72,12 +72,11 @@ namespace WorkHoursCalculator
         protected void BtnLogout_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            Session.RemoveAll();
             Session.Abandon();
             BtnLogout.Visible = false;
             LblWelcome.Visible = false;
-            // ovdje treba ići na koju stranicu da redirekta po logoutu (zasad je login i logout postavljen ovako da se vidi da radi nešto)
-            Response.Redirect("Basic2.aspx");
+            Response.Redirect("Default.aspx");
+
         }
     }
 }

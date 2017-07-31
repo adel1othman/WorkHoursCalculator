@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="Advanced.aspx" />
     <Content Include="Basic2.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="modal.js" />
     <Content Include="packages.config" />
     <Content Include="MyMaster.Master" />
@@ -98,6 +99,13 @@
     </Compile>
     <Compile Include="Basic2.aspx.designer.cs">
       <DependentUpon>Basic2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyMaster.Master.cs">
       <DependentUpon>MyMaster.Master</DependentUpon>
