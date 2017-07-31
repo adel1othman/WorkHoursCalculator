@@ -76,7 +76,6 @@ namespace WorkHoursCalculator
             BtnLogout.Visible = false;
             LblWelcome.Visible = false;
             Response.Redirect("Default.aspx");
-
         }
     }
 }
