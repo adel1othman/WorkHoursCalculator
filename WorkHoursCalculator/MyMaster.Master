@@ -156,7 +156,7 @@
 				</section>
 		</div>
 </div>
-        <asp:Button ID="Button1" runat="server" Text="Basic" CssClass="auto-style4" PostBackUrl="~/Basic2.aspx" />
+        <asp:Button ID="Button1" runat="server" Text="Basic" CssClass="auto-style4" PostBackUrl="~/Basic.aspx" />
          <asp:Button ID="Button2" runat="server" Text="Advanced" CssClass="auto-style5" PostBackUrl="~/Advanced.aspx" />
         <asp:Button ID="BtnLogout" runat="server" Text="Logout" CssClass="auto-style6" OnClick="BtnLogout_Click" Visible="False" />
         <asp:Label ID="LblWelcome" runat="server" Text="Label" CssClass="lblWelcomeStyle" Visible="False" />
