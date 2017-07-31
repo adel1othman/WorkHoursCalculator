@@ -10,7 +10,7 @@
 namespace WorkHoursCalculator {
     
     
-    public partial class Basic2 {
+    public partial class Basic {
         
         /// <summary>
         /// TbxWorkedHouresOnThisDay control.

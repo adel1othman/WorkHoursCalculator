@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace WorkHoursCalculator
 {
-    public partial class Basic2 : System.Web.UI.Page
+    public partial class Basic : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -88,14 +88,14 @@ namespace WorkHoursCalculator
                     }
                 }
             }
+            catch
+            {
+
+            }
             finally
             {
-                // da mi ne zablokira app na nepotpunjenim datumima tako da mogu spremiti današnji dan
-                //radi sa praznim finally
+                con.Close();
             }
-
-            con.Close();
-
         }
     }
 }
