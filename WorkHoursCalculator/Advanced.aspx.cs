@@ -15,6 +15,11 @@ namespace WorkHoursCalculator
         {
             lblError.Visible = false;
             lblError1.Visible = false;
+            lblUkupno.Visible = false;
+            lblUkupnoR.Visible = false;
+            lblFee.Visible = false;
+            lblFeeR.Visible = false;
+
             if (Session["Korisnici"] == null)
             {
                 Response.Redirect("Default.aspx");
@@ -32,20 +37,22 @@ namespace WorkHoursCalculator
             SqlDataReader read = cmd.ExecuteReader();
             if (read.Read())
             {
-                int fromh = 0, toh = 0, hr = 0;
-                while (read.Read())
-                {
-                    int.TryParse(read["Pocetak_rv"].ToString(), out fromh);
-                    int.TryParse(read["Kraj_rv"].ToString(), out toh);
-                    int.TryParse(read["Satnica"].ToString(), out hr);
-                }
+                TimeSpan fromh, toh;
+                int hr = 0;
 
-                if (fromh != 0 || toh != 0)
-                {
-                    TextBox1.Text = fromh.ToString();
-                    TextBox2.Text = toh.ToString();
-                    TextBox3.Text = hr.ToString();
-                }
+                fromh = (TimeSpan)read["Pocetak_rv"];
+                toh = (TimeSpan)read["Kraj_rv"];
+                hr = (int)read["Satnica"];
+
+                TextBox1.Text = fromh.TotalHours.ToString();
+                TextBox2.Text = toh.TotalHours.ToString();
+                TextBox3.Text = hr.ToString();
+            }
+            else
+            {
+                TextBox1.Text = String.Empty;
+                TextBox2.Text = String.Empty;
+                TextBox3.Text = String.Empty;
             }
             con.Close();
         }
@@ -89,33 +96,75 @@ namespace WorkHoursCalculator
                 if (read.Read())
                 {
                     con.Close();
-                    con.Open();
 
-                    SqlCommand updateCmd = new SqlCommand("update Kalkulacije set Pocetak_rv = @prv, Kraj_rv = @krv, Satnica = @hr where Id_korisnik = @id and Datum like @myDatum", con);
+                    SqlCommand updateCmd = new SqlCommand("update Kalkulacije set Pocetak_rv = @prv, Kraj_rv = @krv, Ukupno_odradeno_sati = @ukupno, Satnica = @hr where Id_korisnik = @id and Datum like @myDatum", con);
                     updateCmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
                     updateCmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));
-                    updateCmd.Parameters.AddWithValue("@prv", fromh.ToString() + ":00");
-                    updateCmd.Parameters.AddWithValue("@krv", toh.ToString() + ":00");
+                    updateCmd.Parameters.AddWithValue("@prv", TimeSpan.FromHours(fromh));
+                    updateCmd.Parameters.AddWithValue("@krv", TimeSpan.FromHours(toh));
                     updateCmd.Parameters.AddWithValue("@hr", hr);
+                    int ukupno = 0;
+                    if (toh > fromh)
+                    {
+                        ukupno = toh - fromh;
+                    }
+                    else if (toh < fromh)
+                    {
+                        ukupno = toh + (24 - fromh);
+                    }
+                    updateCmd.Parameters.AddWithValue("@ukupno", ukupno);
+
+                    con.Open();
 
                     int rowsAffected = updateCmd.ExecuteNonQuery();
+
+                    con.Close();
+
+                    lblUkupno.Text = "Worked hours for date " + Calendar1.SelectedDate.ToShortDateString() + ":";
+                    lblUkupnoR.Text = ukupno.ToString();
+                    lblFee.Text = "You've earned:";
+                    lblFeeR.Text = (hr * ukupno).ToString();
+                    lblUkupno.Visible = true;
+                    lblUkupnoR.Visible = true;
+                    lblFee.Visible = true;
+                    lblFeeR.Visible = true;
                 }
                 else
                 {
                     con.Close();
-                    con.Open();
 
                     SqlCommand insertCmd = new SqlCommand("insert into Kalkulacije values(@id, @myDatum, @prv, @krv, @ukupno, @hr)", con);
                     insertCmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
                     insertCmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));
-                    insertCmd.Parameters.AddWithValue("@prv", fromh.ToString() + ":00");
-                    insertCmd.Parameters.AddWithValue("@krv", toh.ToString() + ":00");
+                    insertCmd.Parameters.AddWithValue("@prv", TimeSpan.FromHours(fromh));
+                    insertCmd.Parameters.AddWithValue("@krv", TimeSpan.FromHours(toh));
                     insertCmd.Parameters.AddWithValue("@hr", hr);
-                    insertCmd.Parameters.AddWithValue("@ukupno", toh - fromh);
+                    int ukupno = 0;
+                    if (toh > fromh)
+                    {
+                        ukupno = toh - fromh;
+                    }
+                    else if (toh < fromh)
+                    {
+                        ukupno = toh + (24 - fromh);
+                    }
+                    insertCmd.Parameters.AddWithValue("@ukupno", ukupno);
+                    
+                    con.Open();
 
                     int rowsAffected = insertCmd.ExecuteNonQuery();
+
+                    con.Close();
+
+                    lblUkupno.Text = "Worked hours for date " + Calendar1.SelectedDate.ToShortDateString() + ":";
+                    lblUkupnoR.Text = ukupno.ToString();
+                    lblFee.Text = "You've earned:";
+                    lblFeeR.Text = (hr * ukupno).ToString();
+                    lblUkupno.Visible = true;
+                    lblUkupnoR.Visible = true;
+                    lblFee.Visible = true;
+                    lblFeeR.Visible = true;
                 }
-                con.Close();
             }
         }
     }
