@@ -32,16 +32,16 @@ namespace WorkHoursCalculator
             string myPassword = Password.Value;
             cmd.Parameters.AddWithValue("@username", myUsername);
             cmd.Parameters.AddWithValue("@password", myPassword);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            if (dt.Rows.Count > 0)
+            SqlDataReader read = cmd.ExecuteReader();
+            if (read.Read())
             {
                 Session.Add("Korisnici", myUsername);
+                Session.Add("idKor", read["Id_korisnik"]);
                 // ovdje treba ići na koju stranicu da redirekta po loginu
+                con.Close();
                 Response.Redirect("Advanced.aspx");
-
             }
+            con.Close();
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)
