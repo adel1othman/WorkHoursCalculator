@@ -18,7 +18,101 @@ namespace WorkHoursCalculator
             {
                 Response.Redirect("Default.aspx");
             }
+
+            // ovaj dio služi samo za povlačenje podataka sa današnjim datumom u TbxThisPeriod, TbxTotalHours i TbxTotalEarnings
+
+            //promijenite con
+
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            string datum = Calendar1.TodaysDate.ToShortDateString();
+            TbxThisPeriod.Text = datum;
+
+            try
+            {
+                // prilagoditi d.m.yyy. ili dd.mm.yyyy.
+                string converted = DateTime.ParseExact(datum, "d.M.yyyy.", CultureInfo.InvariantCulture)
+                              .ToString("yyyy-MM-dd");
+
+
+                cmd.Parameters.AddWithValue("@V1", converted);
+                cmd.CommandText = "select * from Kalkulacije where Datum LIKE @V1";
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        // čitanje iz baze i upisivanje u tbx TbxTotalHours
+                        TbxTotalHours.Text = (reader["Ukupno_odradeno_sati"].ToString());
+                        var TotalHours = 0;
+                        Int32.TryParse(TbxTotalHours.Text, out TotalHours);
+
+                        // čitanje iz baze
+                        var TotalEarnings = (reader["Satnica"].ToString());
+                        var _TotalEarnings = 0;
+                        Int32.TryParse(TotalEarnings, out _TotalEarnings);
+
+                        // upisivanje u TbxTotalEarnings
+                        var Ukupno = TotalHours * _TotalEarnings;
+                        TbxTotalEarnings.Text = Ukupno.ToString();
+
+                    }
+                    else
+                    {
+                        TbxTotalHours.Text = "U haven't worked this day";
+                        TbxTotalEarnings.Text = "U haven't worked this day";
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                con.Close();
+            }
+
+
         }
+
+        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
+        {
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+            // Opens a Database Connection
+            con.Open();
+            DateTime LoadDays;
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SELECT Datum FROM Kalkulacije", con);
+                cmd.CommandType = CommandType.Text;
+
+                // Execute DataReader
+                SqlDataReader reader = cmd.ExecuteReader();
+                // Read DataReader till it reaches the end
+                while (reader.Read())
+                {
+                    LoadDays = (DateTime)reader["Datum"];
+
+                    if(LoadDays == e.Day.Date)
+                    {
+                        e.Cell.BackColor = System.Drawing.Color.OrangeRed;
+                    }
+                    
+                }
+                
+               
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('There was an error:" + ex.Message + "');</script>");
+            }
+            con.Close();
+        }
+
         protected void BtnSaveChanges_Click(object sender, EventArgs e)
         {
            // promijenite conn
@@ -48,12 +142,14 @@ namespace WorkHoursCalculator
                 Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
                 var Ukupno = TotalHours * TotalEarnings;
                 TbxTotalEarnings.Text = Ukupno.ToString();
+
+               // Response.Redirect("basic.aspx");
             }
             else
             {
                 con.Close();
 
-                SqlCommand insertCmd = new SqlCommand($"insert into Kalkulacije values( @id , @myDatum, Null, Null,'{TbxWorkedHouresOnThisDay.Text}', '{TbxHourPrice.Text}')", con);
+                SqlCommand insertCmd = new SqlCommand($"insert into Kalkulacije values( @id , @myDatum, Null, Null,'"+TbxWorkedHouresOnThisDay.Text+"', '"+TbxHourPrice.Text+"')", con);
                 insertCmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
                 insertCmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));
                 
@@ -67,6 +163,8 @@ namespace WorkHoursCalculator
                 Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
                 var Ukupno = TotalHours * TotalEarnings;
                 TbxTotalEarnings.Text = Ukupno.ToString();
+                
+              //  Response.Redirect("basic.aspx");
             }
         }
 
@@ -76,13 +174,15 @@ namespace WorkHoursCalculator
             //promijenite con
             TbxWorkedHouresOnThisDay.Text = "Worked Houres On This Day";
             TbxHourPrice.Text = "Hour Price";
+            
 
             SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
             string datum = Calendar1.SelectedDate.ToShortDateString();
-
+            TbxThisPeriod.Text = datum;
+            
             try
             {
                 // prilagoditi d.m.yyy. ili dd.mm.yyyy.
@@ -93,17 +193,17 @@ namespace WorkHoursCalculator
                 cmd.Parameters.AddWithValue("@V1", converted);
                 cmd.CommandText = "select * from Kalkulacije where Datum LIKE @V1";
 
-                using (SqlDataReader read = cmd.ExecuteReader())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    if (read.Read())
+                    if (reader.Read())
                     {
                         // čitanje iz baze i upisivanje u tbx TbxTotalHours
-                        TbxTotalHours.Text = (read["Ukupno_odradeno_sati"].ToString());
+                        TbxTotalHours.Text = (reader["Ukupno_odradeno_sati"].ToString());
                         var TotalHours = 0;
                         Int32.TryParse(TbxTotalHours.Text, out TotalHours);
 
                         // čitanje iz baze
-                        var TotalEarnings = (read["Satnica"].ToString());
+                        var TotalEarnings = (reader["Satnica"].ToString());
                         var _TotalEarnings = 0;
                         Int32.TryParse(TotalEarnings, out _TotalEarnings);
 
@@ -114,8 +214,8 @@ namespace WorkHoursCalculator
                     }
                     else
                     {
-                        TbxTotalHours.Text = "U havent work on this day";
-                        TbxTotalEarnings.Text = "U havent work on this day";
+                        TbxTotalHours.Text = "U haven't worked this day";
+                        TbxTotalEarnings.Text = "U haven't worked this day";
                     }
                 }
             }
@@ -128,5 +228,8 @@ namespace WorkHoursCalculator
                 con.Close();
             }
         }
+
+        
+        
     }
 }
