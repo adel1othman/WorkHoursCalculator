@@ -37,16 +37,22 @@ namespace WorkHoursCalculator
             SqlDataReader read = cmd.ExecuteReader();
             if (read.Read())
             {
-                TimeSpan fromh, toh;
-                int hr = 0;
+                var fromh = read["Pocetak_rv"];
+                var toh = read["Kraj_rv"];
+                var hr = read["Satnica"];
 
-                fromh = (TimeSpan)read["Pocetak_rv"];
-                toh = (TimeSpan)read["Kraj_rv"];
-                hr = (int)read["Satnica"];
-
-                TextBox1.Text = fromh.TotalHours.ToString();
-                TextBox2.Text = toh.TotalHours.ToString();
-                TextBox3.Text = hr.ToString();
+                if (fromh.GetType() == typeof(TimeSpan) && toh.GetType() == typeof(TimeSpan))
+                {
+                    TextBox1.Text = ((TimeSpan)fromh).TotalHours.ToString();
+                    TextBox2.Text = ((TimeSpan)toh).TotalHours.ToString();
+                    TextBox3.Text = hr.ToString();
+                }
+                else
+                {
+                    TextBox1.Text = String.Empty;
+                    TextBox2.Text = String.Empty;
+                    TextBox3.Text = String.Empty;
+                }
             }
             else
             {
