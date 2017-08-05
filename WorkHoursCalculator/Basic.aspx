@@ -3,9 +3,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      Worked Houres On This Day<asp:TextBox ID="TbxWorkedHouresOnThisDay" runat="server" Width="180px">Worked Houres On This Day</asp:TextBox>
-    <asp:Calendar ID="Calendar1" runat="server" style="top: 23px; left: 1100px; float: right; height: 188px; width: 513px;" SelectedDate="08/03/2017 15:30:07" OnSelectionChanged="Calendar1_SelectionChanged" >
+    <asp:Calendar ID="Calendar1" runat="server" style="top: 23px; left: 1100px; float: right; height: 188px; width: 513px;" SelectedDate="<%# DateTime.Today %>" OnSelectionChanged="Calendar1_SelectionChanged" OnDayRender="Calendar1_DayRender" >
         <SelectedDayStyle BackColor="#6699FF" />
-        <TodayDayStyle BackColor="#FFFFCC" />
+        <TodayDayStyle BackColor="#FFFFCC" Font-Bold="True" />
     </asp:Calendar>
     <br />
     <br />
@@ -19,6 +19,7 @@
         <asp:ListItem>1 month</asp:ListItem>
         <asp:ListItem>a year</asp:ListItem>
     </asp:DropDownList>
+     <asp:TextBox ID="TbxThisPeriod" runat="server"></asp:TextBox>
     <br />
     <br />
     Total Hours:
