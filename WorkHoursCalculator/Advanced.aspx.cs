@@ -28,7 +28,7 @@ namespace WorkHoursCalculator
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
             SqlCommand cmd = new SqlCommand("select * from Kalkulacije where Id_korisnik = @id and Datum like @myDatum", con);
             cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
             cmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));
@@ -84,6 +84,18 @@ namespace WorkHoursCalculator
             {
                 e.Cell.BackColor = System.Drawing.Color.Green;
             }
+
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+            SqlCommand cmd = new SqlCommand("select * from Kalkulacije where Id_korisnik = @id and Datum like @myDatum", con);
+            cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+            cmd.Parameters.AddWithValue("@myDatum", e.Day.Date.ToString("yyyy-MM-dd"));
+
+            con.Open();
+            SqlDataReader read = cmd.ExecuteReader();
+            if (read.Read())
+            {
+                e.Cell.BackColor = System.Drawing.Color.DeepSkyBlue;
+            }
         }
 
         protected void btnCalculate_Click(object sender, EventArgs e)
@@ -92,7 +104,7 @@ namespace WorkHoursCalculator
 
             if (int.TryParse(TextBox1.Text, out fromh) && int.TryParse(TextBox2.Text, out toh) && int.TryParse(TextBox3.Text, out hr))
             {
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
                 SqlCommand cmd = new SqlCommand("select * from Kalkulacije where Id_korisnik = @id and Datum like @myDatum", con);
                 cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
                 cmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));

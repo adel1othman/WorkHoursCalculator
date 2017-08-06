@@ -28,7 +28,7 @@ namespace WorkHoursCalculator
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
             string datum = Calendar1.TodaysDate.ToShortDateString();
-            TbxThisPeriod.Text = datum;
+            //TbxThisPeriod.Text = datum;
 
             try
             {
