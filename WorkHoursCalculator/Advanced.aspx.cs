@@ -24,6 +24,11 @@ namespace WorkHoursCalculator
             {
                 Response.Redirect("Default.aspx");
             }
+
+            if (!IsPostBack)
+            {
+                Calendar1.SelectedDate = DateTime.Today.Date;
+            }
         }
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
@@ -102,7 +107,7 @@ namespace WorkHoursCalculator
         {
             int fromh = 0, toh = 0, hr = 0;
 
-            if (int.TryParse(TextBox1.Text, out fromh) && int.TryParse(TextBox2.Text, out toh) && int.TryParse(TextBox3.Text, out hr))
+            if (int.TryParse(TextBox1.Text, out fromh) && int.TryParse(TextBox2.Text, out toh) && int.TryParse(TextBox3.Text, out hr) && Calendar1.SelectedDate != null)
             {
                 SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
                 SqlCommand cmd = new SqlCommand("select * from Kalkulacije where Id_korisnik = @id and Datum like @myDatum", con);
