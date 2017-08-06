@@ -7,10 +7,12 @@
         <SelectedDayStyle BackColor="#6699FF" />
         <TodayDayStyle BackColor="#FFFFCC" Font-Bold="True" />
     </asp:Calendar>
+     <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="TbxWorkedHouresOnThisDay" CssClass="btn_red" ErrorMessage="The field must be a number" Operator="DataTypeCheck" Type="Integer"></asp:CompareValidator>
     <br />
     <br />
     <br />
     Hour price<asp:TextBox ID="TbxHourPrice" runat="server" Width="180px">Hour price</asp:TextBox>
+     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="TbxHourPrice" CssClass="btn_red" ErrorMessage="The field must be a number" Operator="DataTypeCheck" Type="Integer"></asp:CompareValidator>
     <br />
     <br />
     Calculation for<asp:DropDownList ID="ddlMode" runat="server">
