@@ -28,10 +28,11 @@ namespace WorkHoursCalculator
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
             string datum = Calendar1.TodaysDate.ToShortDateString();
-            //TbxThisPeriod.Text = datum;
+            TbxThisPeriod.Text = datum;
 
             try
             {
+
                 // prilagoditi d.m.yyy. ili dd.mm.yyyy.
                 string converted = DateTime.ParseExact(datum, "d.M.yyyy.", CultureInfo.InvariantCulture)
                               .ToString("yyyy-MM-dd");
@@ -116,56 +117,160 @@ namespace WorkHoursCalculator
         protected void BtnSaveChanges_Click(object sender, EventArgs e)
         {
            // promijenite conn
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
-            SqlCommand cmd = new SqlCommand("select * from Kalkulacije where Id_korisnik = @id and Datum like @myDatum", con);
-            cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
-            cmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));
+            
 
-            con.Open();
-            SqlDataReader read = cmd.ExecuteReader();
-            if (read.Read())
+           
+            if (Calendar1.SelectedDate.Date == DateTime.MinValue)
             {
-                con.Close();
-
-                SqlCommand updateCmd = new SqlCommand($"update Kalkulacije set Ukupno_odradeno_sati = '{TbxWorkedHouresOnThisDay.Text}', Satnica ='{TbxHourPrice.Text}' where Id_korisnik = @id and Datum like @myDatum", con);
-                updateCmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
-                updateCmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));
-
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+                SqlCommand cmd = new SqlCommand("select * from Kalkulacije where Id_korisnik = @id and Datum like @myDatum", con);
+                cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+                cmd.Parameters.AddWithValue("@myDatum", Calendar1.TodaysDate.ToString("yyyy-MM-dd"));
                 con.Open();
-                updateCmd.ExecuteNonQuery();
-                con.Close();
-                
-                int TotalHours = 0;
-                Int32.TryParse(TbxWorkedHouresOnThisDay.Text, out TotalHours);
-                TbxTotalHours.Text = TotalHours.ToString();
-                int TotalEarnings = 0;
-                Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
-                var Ukupno = TotalHours * TotalEarnings;
-                TbxTotalEarnings.Text = Ukupno.ToString();
+                SqlDataReader read = cmd.ExecuteReader();
+                if (read.Read())
+                {
+                    con.Close();
 
-               // Response.Redirect("basic.aspx");
+                    SqlCommand updateCmd = new SqlCommand($"update Kalkulacije set Ukupno_odradeno_sati = '{TbxWorkedHouresOnThisDay.Text}', Satnica ='{TbxHourPrice.Text}' where Id_korisnik = @id and Datum like @myDatum", con);
+                    updateCmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+                    updateCmd.Parameters.AddWithValue("@myDatum", Calendar1.TodaysDate.ToString("yyyy-MM-dd"));
+
+                    con.Open();
+                    updateCmd.ExecuteNonQuery();
+                    con.Close();
+
+                    int TotalHours = 0;
+                    Int32.TryParse(TbxWorkedHouresOnThisDay.Text, out TotalHours);
+                    TbxTotalHours.Text = TotalHours.ToString();
+                    int TotalEarnings = 0;
+                    Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
+                    var Ukupno = TotalHours * TotalEarnings;
+                    TbxTotalEarnings.Text = Ukupno.ToString();
+
+                    // Response.Redirect("basic.aspx");
+                }
+                else
+                {
+                    con.Close();
+
+                    SqlCommand insertCmd = new SqlCommand($"insert into Kalkulacije values( @id , @myDatum, Null, Null,'" + TbxWorkedHouresOnThisDay.Text + "', '" + TbxHourPrice.Text + "')", con);
+                    insertCmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+                    insertCmd.Parameters.AddWithValue("@myDatum", Calendar1.TodaysDate.ToString("yyyy-MM-dd"));
+
+                    con.Open();
+                    insertCmd.ExecuteNonQuery();
+                    con.Close();
+                    int TotalHours = 0;
+                    Int32.TryParse(TbxWorkedHouresOnThisDay.Text, out TotalHours);
+                    TbxTotalHours.Text = TotalHours.ToString();
+                    int TotalEarnings = 0;
+                    Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
+                    var Ukupno = TotalHours * TotalEarnings;
+                    TbxTotalEarnings.Text = Ukupno.ToString();
+
+                    //  Response.Redirect("basic.aspx");
+                }
             }
             else
             {
-                con.Close();
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+                SqlCommand cmd = new SqlCommand("select * from Kalkulacije where Id_korisnik = @id and Datum like @myDatum", con);
+                cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+                cmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));
 
-                SqlCommand insertCmd = new SqlCommand($"insert into Kalkulacije values( @id , @myDatum, Null, Null,'"+TbxWorkedHouresOnThisDay.Text+"', '"+TbxHourPrice.Text+"')", con);
-                insertCmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
-                insertCmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));
-                
                 con.Open();
-                insertCmd.ExecuteNonQuery();
-                con.Close();
-                int TotalHours = 0;
-                Int32.TryParse(TbxWorkedHouresOnThisDay.Text, out TotalHours);
-                TbxTotalHours.Text = TotalHours.ToString();
-                int TotalEarnings = 0;
-                Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
-                var Ukupno = TotalHours * TotalEarnings;
-                TbxTotalEarnings.Text = Ukupno.ToString();
-                
-              //  Response.Redirect("basic.aspx");
+                SqlDataReader read = cmd.ExecuteReader();
+                if (read.Read())
+                {
+                    con.Close();
+
+                    SqlCommand updateCmd = new SqlCommand($"update Kalkulacije set Ukupno_odradeno_sati = '{TbxWorkedHouresOnThisDay.Text}', Satnica ='{TbxHourPrice.Text}' where Id_korisnik = @id and Datum like @myDatum", con);
+                    updateCmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+                    updateCmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));
+
+                    con.Open();
+                    updateCmd.ExecuteNonQuery();
+                    con.Close();
+
+                    int TotalHours = 0;
+                    Int32.TryParse(TbxWorkedHouresOnThisDay.Text, out TotalHours);
+                    TbxTotalHours.Text = TotalHours.ToString();
+                    int TotalEarnings = 0;
+                    Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
+                    var Ukupno = TotalHours * TotalEarnings;
+                    TbxTotalEarnings.Text = Ukupno.ToString();
+
+                    
+                    // Response.Redirect("basic.aspx");
+                }
+                else
+                {
+                    con.Close();
+
+                    SqlCommand insertCmd = new SqlCommand($"insert into Kalkulacije values( @id , @myDatum, Null, Null,'" + TbxWorkedHouresOnThisDay.Text + "', '" + TbxHourPrice.Text + "')", con);
+                    insertCmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+                    insertCmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));
+
+                    con.Open();
+                    insertCmd.ExecuteNonQuery();
+                    con.Close();
+                    int TotalHours = 0;
+                    Int32.TryParse(TbxWorkedHouresOnThisDay.Text, out TotalHours);
+                    TbxTotalHours.Text = TotalHours.ToString();
+                    int TotalEarnings = 0;
+                    Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
+                    var Ukupno = TotalHours * TotalEarnings;
+                    TbxTotalEarnings.Text = Ukupno.ToString();
+
+                    //  Response.Redirect("basic.aspx");
+                }
             }
+            //con.Open();
+            //SqlDataReader read = cmd.ExecuteReader();
+            //if (read.Read())
+            //{
+            //    con.Close();
+
+            //    SqlCommand updateCmd = new SqlCommand($"update Kalkulacije set Ukupno_odradeno_sati = '{TbxWorkedHouresOnThisDay.Text}', Satnica ='{TbxHourPrice.Text}' where Id_korisnik = @id and Datum like @myDatum", con);
+            //    updateCmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+            //    updateCmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));
+
+            //    con.Open();
+            //    updateCmd.ExecuteNonQuery();
+            //    con.Close();
+                
+            //    int TotalHours = 0;
+            //    Int32.TryParse(TbxWorkedHouresOnThisDay.Text, out TotalHours);
+            //    TbxTotalHours.Text = TotalHours.ToString();
+            //    int TotalEarnings = 0;
+            //    Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
+            //    var Ukupno = TotalHours * TotalEarnings;
+            //    TbxTotalEarnings.Text = Ukupno.ToString();
+
+            //   // Response.Redirect("basic.aspx");
+            //}
+            //else
+            //{
+            //    con.Close();
+
+            //    SqlCommand insertCmd = new SqlCommand($"insert into Kalkulacije values( @id , @myDatum, Null, Null,'"+TbxWorkedHouresOnThisDay.Text+"', '"+TbxHourPrice.Text+"')", con);
+            //    insertCmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+            //    insertCmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));
+                
+            //    con.Open();
+            //    insertCmd.ExecuteNonQuery();
+            //    con.Close();
+            //    int TotalHours = 0;
+            //    Int32.TryParse(TbxWorkedHouresOnThisDay.Text, out TotalHours);
+            //    TbxTotalHours.Text = TotalHours.ToString();
+            //    int TotalEarnings = 0;
+            //    Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
+            //    var Ukupno = TotalHours * TotalEarnings;
+            //    TbxTotalEarnings.Text = Ukupno.ToString();
+                
+            //  //  Response.Redirect("basic.aspx");
+            //}
         }
 
 
