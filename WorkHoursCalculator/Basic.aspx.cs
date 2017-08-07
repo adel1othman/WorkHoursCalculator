@@ -18,6 +18,20 @@ namespace WorkHoursCalculator
             {
                 Response.Redirect("Default.aspx");
             }
+            if (!IsPostBack)
+            {
+                int i = 0;
+                for (i = 2015; i <= 2020; i++)
+                {
+                    year.Items.Add(i.ToString());
+                }
+            }
+
+           
+
+            month.Visible = false;
+            year.Visible = false;
+           
 
             // ovaj dio služi samo za povlačenje podataka sa današnjim datumom u TbxThisPeriod, TbxTotalHours i TbxTotalEarnings
 
@@ -168,7 +182,7 @@ namespace WorkHoursCalculator
                 {
                     con.Close();
 
-                    SqlCommand insertCmd = new SqlCommand($"insert into Kalkulacije values( @id , @myDatum, Null, Null,'" + TbxWorkedHouresOnThisDay.Text + "', '" + TbxHourPrice.Text + "')", con);
+                    SqlCommand insertCmd = new SqlCommand($"insert into Kalkulacije values( @id , @myDatum, Null, Null,'" + TbxWorkedHouresOnThisDay.Text + "', '" + TbxHourPrice.Text + "', null)", con);
                     insertCmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
                     insertCmd.Parameters.AddWithValue("@myDatum", Calendar1.TodaysDate.ToString("yyyy-MM-dd"));
 
@@ -227,7 +241,7 @@ namespace WorkHoursCalculator
                 {
                     con.Close();
 
-                    SqlCommand insertCmd = new SqlCommand($"insert into Kalkulacije values( @id , @myDatum, Null, Null,'" + TbxWorkedHouresOnThisDay.Text + "', '" + TbxHourPrice.Text + "')", con);
+                    SqlCommand insertCmd = new SqlCommand($"insert into Kalkulacije values( @id , @myDatum, Null, Null,'" + TbxWorkedHouresOnThisDay.Text + "', '" + TbxHourPrice.Text + "', null)", con);
                     insertCmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
                     insertCmd.Parameters.AddWithValue("@myDatum", Calendar1.SelectedDate.ToString("yyyy-MM-dd"));
 
@@ -305,7 +319,7 @@ namespace WorkHoursCalculator
             }
             catch
             {
-
+                
             }
             finally
             {
@@ -313,7 +327,98 @@ namespace WorkHoursCalculator
             }
         }
 
+        protected void ddlMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+           
+
+            string dropdown = ddlMode.SelectedItem.Text;
+           
+            switch (dropdown)
+            {
+                
+                case "1 week":
+                    break;
+                case "1 month":
+
+                    TbxThisPeriod.Visible = false;
+                    month.Visible = true;
+                    year.Visible = true;
+                    
+                   
+                    //// Goran
+                    //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+
+                    //// Adel
+                    ////SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+
+                    //SqlCommand cmd = new SqlCommand("select sum(zaradeno) From kalkulacije where Id_korisnik = @id and month(datum)=@myMonth and year(datum)=@myYear", con);
+                   
+                    //cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+                    //cmd.Parameters.AddWithValue("@myYear", year.SelectedValue.ToString());
+                    //cmd.Parameters.AddWithValue("@myMonth", month.SelectedValue.ToString());
+
+                    //con.Open();
+                    //TbxTotalEarnings.Text = cmd.ExecuteScalar().ToString();
+
+                        break;
+                case "a year":
+                    break;
+                default:
+                    Response.Redirect("basic.aspx");
+                    break;
+            }
+
+        }
+
+        protected void month_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+           
+                    TbxThisPeriod.Visible = false;
+                    month.Visible = true;
+                    year.Visible = true;
+                    // Goran
+                    SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+
+                    // Adel
+                    //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+
+                    SqlCommand cmd = new SqlCommand("select sum(zaradeno) From kalkulacije where Id_korisnik = @id and month(datum)=@myMonth and year(datum)=@myYear", con);
+
+                    cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+                    cmd.Parameters.AddWithValue("@myYear", year.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@myMonth", month.SelectedValue.ToString());
+
+                    con.Open();
+                    TbxTotalEarnings.Text = cmd.ExecuteScalar().ToString();
+
+                   
+            
+        }
+
+        protected void year_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+                    TbxThisPeriod.Visible = false;
+                    month.Visible = true;
+                    year.Visible = true;
+                    // Goran
+                    SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+
+                    // Adel
+                    //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+
+                    SqlCommand cmd = new SqlCommand("select sum(zaradeno) From kalkulacije where Id_korisnik = @id and month(datum)=@myMonth and year(datum)=@myYear", con);
+
+                    cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+                    cmd.Parameters.AddWithValue("@myYear", year.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@myMonth", month.SelectedValue.ToString());
+
+                    con.Open();
+                    TbxTotalEarnings.Text = cmd.ExecuteScalar().ToString();
         
-        
+            
+        }
     }
 }

@@ -76,6 +76,24 @@ namespace WorkHoursCalculator {
         protected global::System.Web.UI.WebControls.TextBox TbxThisPeriod;
         
         /// <summary>
+        /// month control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList month;
+        
+        /// <summary>
+        /// year control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList year;
+        
+        /// <summary>
         /// TbxTotalHours control.
         /// </summary>
         /// <remarks>
