@@ -38,6 +38,8 @@
      </asp:DropDownList>
      <asp:DropDownList ID="year" runat="server" AutoPostBack="True" OnSelectedIndexChanged="year_SelectedIndexChanged">
      </asp:DropDownList>
+     <asp:DropDownList ID="OnlyYear" runat="server" AutoPostBack="True" OnSelectedIndexChanged="OnlyYear_SelectedIndexChanged">
+     </asp:DropDownList>
     <br />
     <br />
     Total Hours:
@@ -55,5 +57,6 @@
     <br />
     <br />
     <br />
-    <br />
+
 </asp:Content>
+
