@@ -22,6 +22,15 @@ namespace WorkHoursCalculator {
         protected global::System.Web.UI.WebControls.DropDownList ddlSelection;
         
         /// <summary>
+        /// ddlSaveCalculation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSaveCalculation;
+        
+        /// <summary>
         /// Calendar1 control.
         /// </summary>
         /// <remarks>
