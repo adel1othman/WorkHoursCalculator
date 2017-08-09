@@ -15,10 +15,20 @@
     </script>
 
 
+    <h4 style="color: #FF6600">Note: If you choose to save your calculations, that will replace your previous calculation</h4>
+    <br />
+
+
     
     <asp:DropDownList ID="ddlSelection" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSelection_SelectedIndexChanged">
         <asp:ListItem>1 Day</asp:ListItem>
-        <asp:ListItem>Multiple Days</asp:ListItem>
+        <asp:ListItem>1 Week</asp:ListItem>
+        <asp:ListItem>1 Month</asp:ListItem>
+        <asp:ListItem>1 Year</asp:ListItem>
+    </asp:DropDownList>
+    <asp:DropDownList ID="ddlSaveCalculation" runat="server" AutoPostBack="True">
+        <asp:ListItem>Save My Calculations</asp:ListItem>
+        <asp:ListItem>Don&#39;t Save This Calculation</asp:ListItem>
     </asp:DropDownList>
     <br />
     <br />
