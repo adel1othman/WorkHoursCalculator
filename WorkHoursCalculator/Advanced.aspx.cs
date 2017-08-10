@@ -305,6 +305,7 @@ namespace WorkHoursCalculator
         {
             if (ddlSaveCalculation.SelectedIndex == 0)
             {
+                ddlSelection.SelectedIndex = 0;
                 ddlSelection.Enabled = false;
             }
             else
