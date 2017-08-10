@@ -161,7 +161,7 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <asp:CompareValidator ID="CompareValidatorP" runat="server" ErrorMessage="Entered passwords do not match" ForeColor="#FF3300" ControlToCompare="Password1" ControlToValidate="Password2"></asp:CompareValidator>
+                                        <asp:CompareValidator ID="CompareValidatorP" runat="server" ErrorMessage="Entered passwords don't match" ForeColor="#FF3300" ControlToCompare="Password1" ControlToValidate="Password2"></asp:CompareValidator>
                                     </td>
                                 </tr>
                                 <tr>
@@ -170,6 +170,7 @@
                                     </td>
                                 </tr>
                             </table>
+                            <asp:Label ID="lblRegisterError" runat="server" Visible="False" ForeColor="#FF3300"></asp:Label>
 
 										<div class="checkbox">
 												<input id="send_updates" type="checkbox" />

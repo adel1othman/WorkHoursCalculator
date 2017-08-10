@@ -15,7 +15,8 @@ namespace WorkHoursCalculator
         protected void Page_Load(object sender, EventArgs e)
         {
             lblLoginError.Visible = false;
-            
+            lblRegisterError.Visible = false;
+
             if (Session["Korisnici"] != null)
             {
                 container.Visible = false;
@@ -67,10 +68,17 @@ namespace WorkHoursCalculator
             cmd.Parameters.AddWithValue("@username", username);
             cmd.Parameters.AddWithValue("@password", password);
             cmd.Parameters.AddWithValue("@email", email);
-
+            int rowsAffected = 0;
             con.Open();
-
-            int rowsAffected = cmd.ExecuteNonQuery();
+            try
+            {
+                rowsAffected = cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                lblRegisterError.Text = "There is already registered user with this Username or Email";
+                lblRegisterError.Visible = true;
+            }
 
             con.Close();
 
