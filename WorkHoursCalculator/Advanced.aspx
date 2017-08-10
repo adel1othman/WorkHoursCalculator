@@ -17,8 +17,6 @@
 
     <h4 style="color: #FF6600">Note: If you choose to save your calculations, that will replace your previous calculation</h4>
     <br />
-
-
     
     <asp:DropDownList ID="ddlSelection" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSelection_SelectedIndexChanged">
         <asp:ListItem>1 Day</asp:ListItem>

@@ -14,6 +14,8 @@ namespace WorkHoursCalculator
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblLoginError.Visible = false;
+            
             if (Session["Korisnici"] != null)
             {
                 container.Visible = false;
@@ -24,7 +26,8 @@ namespace WorkHoursCalculator
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
-        {   //Promijenite con
+        {
+            //Promijenite con
             // Goran
             //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
@@ -44,6 +47,11 @@ namespace WorkHoursCalculator
                 // ovdje treba ići na koju stranicu da redirekta po loginu
                 con.Close();
                 Response.Redirect("Advanced.aspx");
+            }
+            else
+            {
+                lblLoginError.Text = "Wrong username or password";
+                lblLoginError.Visible = true;
             }
             con.Close();
         }
@@ -69,6 +77,19 @@ namespace WorkHoursCalculator
             if (rowsAffected != 0)
             {
                 Session.Add("Korisnici", username);
+
+                SqlCommand cmdID = new SqlCommand("select Id_korisnik from Korisnici where Korisnicko_ime like @username and Lozinka like @password", con);
+                cmdID.Parameters.AddWithValue("@username", username);
+                cmdID.Parameters.AddWithValue("@password", password);
+
+                con.Open();
+                SqlDataReader read = cmdID.ExecuteReader();
+                while (read.Read())
+                {
+                    Session.Add("idKor", read["Id_korisnik"]);
+                }
+                con.Close();
+
                 Response.Redirect("Advanced.aspx");
             }
         }

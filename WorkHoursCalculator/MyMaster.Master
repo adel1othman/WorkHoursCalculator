@@ -97,7 +97,8 @@
 										<input type="password" id="Password" runat="server" />
 										<br />
 
-                            
+                            <asp:Label ID="lblLoginError" runat="server" Visible="False" ForeColor="#FF3300"></asp:Label>
+                            <br />
 
 										<div class="checkbox">
 												<input id="remember" type="checkbox" />
@@ -106,7 +107,7 @@
 
 										<div class="action_btns">
                                             <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-                                            <div class="one_half last"><a class="btn btn_red"><asp:Button ID="btnLogin" runat="server" Text="Login" BorderStyle="None" BackColor="Transparent" Height="100%" style="margin-top: 0px" Width="100%" OnClick="btnLogin_Click" /></a></div>
+                                            <div class="one_half last"><a class="btn btn_red"><asp:Button ID="btnLogin" runat="server" Text="Login" BorderStyle="None" BackColor="Transparent" Height="100%" style="margin-top: 0px" Width="100%" OnClick="btnLogin_Click" CausesValidation="False" /></a></div>
 										</div>
 
 								<a href="#" class="forgot_password">Forgot password?</a>
@@ -115,37 +116,65 @@
                         <!-- Register Form -->
 						<div class="user_register">
 										<input type="text" id="Username2" runat="server" placeholder="Username" />
-										<br />
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorUN" runat="server" ErrorMessage="Username error" ForeColor="#FF3300" ControlToValidate="Username2" ValidationExpression="[a-zA-Z0-9_\-]{6,30}"></asp:RegularExpressionValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorUN" runat="server" ErrorMessage="Username is required" ForeColor="#FF3300" ControlToValidate="Username2"></asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                            </table>
 
-										<input type="email" id="Email" runat="server" placeholder="Email Address" />
-										<br />
+										<input type="text" id="Email" runat="server" placeholder="Email Address" />
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorE" runat="server" ErrorMessage="Email error" ForeColor="#FF3300" ControlToValidate="Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorE" runat="server" ErrorMessage="Email is required" ForeColor="#FF3300" ControlToValidate="Email"></asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                            </table>
                             
 										<input type="password" id="Password1" runat="server" placeholder="Password" />
-										<br />
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorP" runat="server" ErrorMessage="password error" ForeColor="#FF3300" ControlToValidate="Password1" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,16}$"></asp:RegularExpressionValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorP" runat="server" ErrorMessage="Password is required" ForeColor="#FF3300" ControlToValidate="Password1"></asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                            </table>
 
 										<input type="password" id="Password2" runat="server" placeholder="Confirm Password" />
-										<br />
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:CompareValidator ID="CompareValidatorP" runat="server" ErrorMessage="Entered passwords do not match" ForeColor="#FF3300" ControlToCompare="Password1" ControlToValidate="Password2"></asp:CompareValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorP2" runat="server" ErrorMessage="Password confirmation is required" ForeColor="#FF3300" ControlToValidate="Password2"></asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                            </table>
 
 										<div class="checkbox">
 												<input id="send_updates" type="checkbox" />
 												<label for="send_updates">Send me occasional email updates</label>
 										</div>
-                            
-                            <script type="text/javascript">
-                                var password = document.getElementById("Password1")
-                                    , confirm_password = document.getElementById("Password2");
-
-                                function validatePassword() {
-                                    if (password.value != confirm_password.value) {
-                                        confirm_password.setCustomValidity("Passwords Don't Match");
-                                    } else {
-                                        confirm_password.setCustomValidity('');
-                                    }
-                                }
-
-                                password.onchange = validatePassword;
-                                confirm_password.onkeyup = validatePassword;
-                            </script>
 
 										<div class="action_btns">
                                             <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
