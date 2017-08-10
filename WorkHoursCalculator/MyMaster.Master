@@ -119,12 +119,12 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorUN" runat="server" ErrorMessage="Username error" ForeColor="#FF3300" ControlToValidate="Username2" ValidationExpression="[a-zA-Z0-9_\-]{6,30}"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorUN" runat="server" ErrorMessage="Invalid Username" ForeColor="#FF3300" ControlToValidate="Username2" ValidationExpression="[a-zA-Z0-9_\-]{6,30}"></asp:RegularExpressionValidator>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorUN" runat="server" ErrorMessage="Username is required" ForeColor="#FF3300" ControlToValidate="Username2"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorUN" runat="server" ErrorMessage="Username field is required" ForeColor="#FF3300" ControlToValidate="Username2"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                             </table>
@@ -133,12 +133,12 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorE" runat="server" ErrorMessage="Email error" ForeColor="#FF3300" ControlToValidate="Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorE" runat="server" ErrorMessage="Invalid Email" ForeColor="#FF3300" ControlToValidate="Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorE" runat="server" ErrorMessage="Email is required" ForeColor="#FF3300" ControlToValidate="Email"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorE" runat="server" ErrorMessage="Email field is required" ForeColor="#FF3300" ControlToValidate="Email"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                             </table>
@@ -147,12 +147,12 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorP" runat="server" ErrorMessage="password error" ForeColor="#FF3300" ControlToValidate="Password1" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,16}$"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorP" runat="server" ErrorMessage="Invalid password" ForeColor="#FF3300" ControlToValidate="Password1" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,16}$"></asp:RegularExpressionValidator>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorP" runat="server" ErrorMessage="Password is required" ForeColor="#FF3300" ControlToValidate="Password1"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorP" runat="server" ErrorMessage="Password field is required" ForeColor="#FF3300" ControlToValidate="Password1"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                             </table>
@@ -166,7 +166,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorP2" runat="server" ErrorMessage="Password confirmation is required" ForeColor="#FF3300" ControlToValidate="Password2"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorP2" runat="server" ErrorMessage="Password confirmation field is required" ForeColor="#FF3300" ControlToValidate="Password2"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                             </table>
