@@ -32,7 +32,7 @@ namespace WorkHoursCalculator
                 year.Visible = false;
                 OnlyYear.Visible = false;
 
-                // ovaj dio služi samo za povlačenje podataka sa današnjim datumom u TbxThisPeriod, TbxTotalHours i TbxTotalEarnings
+                // ovaj dio služi samo za povlačenje podataka sa današnjim datumom u TbxThisPeriod, TbxTotalHours i LblTotalEarningsCalculation
 
                 //promijenite con
                 // Goran
@@ -45,7 +45,8 @@ namespace WorkHoursCalculator
                 SqlCommand cmd = con.CreateCommand();
                 cmd.CommandType = CommandType.Text;
                 string datum = Calendar1.TodaysDate.ToShortDateString();
-                TbxThisPeriod.Text = datum;
+                //TbxThisPeriod.Text = datum;
+                LblPeriod.Text = datum;
 
                 try
                 {
@@ -63,24 +64,24 @@ namespace WorkHoursCalculator
                         if (reader.Read())
                         {
                             // čitanje iz baze i upisivanje u tbx TbxTotalHours
-                            TbxTotalHours.Text = (reader["Ukupno_odradeno_sati"].ToString());
+                            LblTotalHoursCalculation.Text = (reader["Ukupno_odradeno_sati"].ToString());
                             var TotalHours = 0;
-                            Int32.TryParse(TbxTotalHours.Text, out TotalHours);
+                            Int32.TryParse(LblTotalHoursCalculation.Text, out TotalHours);
 
                             // čitanje iz baze
                             var TotalEarnings = (reader["Satnica"].ToString());
                             var _TotalEarnings = 0;
                             Int32.TryParse(TotalEarnings, out _TotalEarnings);
 
-                            // upisivanje u TbxTotalEarnings
+                            // upisivanje u LblTotalEarningsCalculation
                             var Ukupno = TotalHours * _TotalEarnings;
-                            TbxTotalEarnings.Text = Ukupno.ToString();
+                            LblTotalEarningsCalculation.Text = Ukupno.ToString();
 
                         }
                         else
                         {
-                            TbxTotalHours.Text = "U haven't worked this day";
-                            TbxTotalEarnings.Text = "U haven't worked this day";
+                            LblTotalHoursCalculation.Text = "U haven't worked this day";
+                            LblTotalEarningsCalculation.Text = "U haven't worked this day";
                         }
                     }
                 }
@@ -122,7 +123,8 @@ namespace WorkHoursCalculator
 
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT Datum FROM Kalkulacije", con);
+                SqlCommand cmd = new SqlCommand("SELECT Datum FROM Kalkulacije where Id_korisnik = @id", con);
+                cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
                 cmd.CommandType = CommandType.Text;
 
                 // Execute DataReader
@@ -170,11 +172,11 @@ namespace WorkHoursCalculator
 
                     int TotalHours = 0;
                     Int32.TryParse(TbxWorkedHouresOnThisDay.Text, out TotalHours);
-                    TbxTotalHours.Text = TotalHours.ToString();
+                    LblTotalHoursCalculation.Text = TotalHours.ToString();
                     int TotalEarnings = 0;
                     Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
                     var Ukupno = TotalHours * TotalEarnings;
-                    TbxTotalEarnings.Text = Ukupno.ToString();
+                    LblTotalEarningsCalculation.Text = Ukupno.ToString();
                     
 
 
@@ -192,11 +194,11 @@ namespace WorkHoursCalculator
                 {
                     int TotalHours = 0;
                     Int32.TryParse(TbxWorkedHouresOnThisDay.Text, out TotalHours);
-                    TbxTotalHours.Text = TotalHours.ToString();
+                    LblTotalHoursCalculation.Text = TotalHours.ToString();
                     int TotalEarnings = 0;
                     Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
                     var Ukupno = TotalHours * TotalEarnings;
-                    TbxTotalEarnings.Text = Ukupno.ToString();
+                    LblTotalEarningsCalculation.Text = Ukupno.ToString();
 
                     con.Close();
 
@@ -230,12 +232,13 @@ namespace WorkHoursCalculator
                     con.Close();
                     int TotalHours = 0;
                     Int32.TryParse(TbxWorkedHouresOnThisDay.Text, out TotalHours);
-                    TbxTotalHours.Text = TotalHours.ToString();
+                    LblTotalHoursCalculation.Text = TotalHours.ToString();
                     int TotalEarnings = 0;
                     Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
                     var Ukupno = TotalHours * TotalEarnings;
-                    TbxTotalEarnings.Text = Ukupno.ToString();
-                    TbxThisPeriod.Text = Calendar1.SelectedDate.ToString("d.M.yyyy");
+                    LblTotalEarningsCalculation.Text = Ukupno.ToString();
+                 //   TbxThisPeriod.Text = Calendar1.SelectedDate.ToString("d.M.yyyy");
+                    LblPeriod.Text= Calendar1.SelectedDate.ToString("d.M.yyyy");
 
                     SqlCommand updateCmd = new SqlCommand($"update Kalkulacije set Ukupno_odradeno_sati = '{TbxWorkedHouresOnThisDay.Text}', Satnica ='{TbxHourPrice.Text}', zaradeno = @zaradeno where Id_korisnik = @id and Datum like @myDatum", con);
                     updateCmd.Parameters.AddWithValue("@zaradeno", Ukupno);
@@ -252,12 +255,13 @@ namespace WorkHoursCalculator
                     con.Close();
                     int TotalHours = 0;
                     Int32.TryParse(TbxWorkedHouresOnThisDay.Text, out TotalHours);
-                    TbxTotalHours.Text = TotalHours.ToString();
+                    LblTotalHoursCalculation.Text = TotalHours.ToString();
                     int TotalEarnings = 0;
                     Int32.TryParse(TbxHourPrice.Text, out TotalEarnings);
                     var Ukupno = TotalHours * TotalEarnings;
-                    TbxTotalEarnings.Text = Ukupno.ToString();
-                    TbxThisPeriod.Text = Calendar1.SelectedDate.ToString("d.M.yyyy");
+                    LblTotalEarningsCalculation.Text = Ukupno.ToString();
+                    //TbxThisPeriod.Text = Calendar1.SelectedDate.ToString("d.M.yyyy");
+                    LblPeriod.Text = Calendar1.SelectedDate.ToString("d.M.yyyy");
 
                     SqlCommand insertCmd = new SqlCommand($"insert into Kalkulacije values( @id , @myDatum, Null, Null,'" + TbxWorkedHouresOnThisDay.Text + "', '" + TbxHourPrice.Text + "', @zaradeno)", con);
                     insertCmd.Parameters.AddWithValue("@zaradeno", Ukupno);
@@ -274,7 +278,7 @@ namespace WorkHoursCalculator
         }
 
 
-        protected void Calendar1_SelectionChanged(object sender, EventArgs e)    // ovaj dio služi samo za povlačenje podataka sa odabranim datumom u TbxThisPeriod, TbxTotalHours i TbxTotalEarnings
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)    // ovaj dio služi samo za povlačenje podataka sa odabranim datumom u TbxThisPeriod, TbxTotalHours i LblTotalEarningsCalculation
         {
             //promijenite con
             TbxWorkedHouresOnThisDay.Text = "Worked Houres On This Day";
@@ -290,8 +294,9 @@ namespace WorkHoursCalculator
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
             string datum = Calendar1.SelectedDate.ToShortDateString();
-            TbxThisPeriod.Text = datum;
-            
+           // TbxThisPeriod.Text = datum;
+            LblPeriod.Text = datum;
+
             try
             {
                 // prilagoditi d.m.yyy. ili dd.mm.yyyy.
@@ -307,25 +312,26 @@ namespace WorkHoursCalculator
                     if (reader.Read())
                     {
                         // čitanje iz baze i upisivanje u tbx TbxTotalHours
-                        TbxTotalHours.Text = (reader["Ukupno_odradeno_sati"].ToString());
+                        LblTotalHoursCalculation.Text = (reader["Ukupno_odradeno_sati"].ToString());
                         var TotalHours = 0;
-                        Int32.TryParse(TbxTotalHours.Text, out TotalHours);
+                        Int32.TryParse(LblTotalHoursCalculation.Text, out TotalHours);
 
                         // čitanje iz baze
                         var TotalEarnings = (reader["Satnica"].ToString());
                         var _TotalEarnings = 0;
                         Int32.TryParse(TotalEarnings, out _TotalEarnings);
 
-                        // upisivanje u TbxTotalEarnings
+                        // upisivanje u LblTotalEarningsCalculation
                         var Ukupno = TotalHours * _TotalEarnings;
-                        TbxTotalEarnings.Text = Ukupno.ToString();
+                        LblTotalEarningsCalculation.Text = Ukupno.ToString();
                         
                     }
                     else
                     {
-                        TbxTotalHours.Text = "U haven't worked this day";
-                        TbxTotalEarnings.Text = "U haven't worked this day";
-                        TbxThisPeriod.Visible = true;
+                        LblTotalHoursCalculation.Text = "U haven't worked this day";
+                        LblTotalEarningsCalculation.Text = "U haven't worked this day";
+                       // TbxThisPeriod.Visible = true;
+                        LblPeriod.Visible = true;
                         month.Visible = false;
                         year.Visible = false;
                         OnlyYear.Visible = false;
@@ -358,21 +364,31 @@ namespace WorkHoursCalculator
 
                 case "1 month":
 
-                    TbxThisPeriod.Visible = false;
+                  //  TbxThisPeriod.Visible = false;
+                    LblPeriod.Visible = false;  
                     month.Visible = true;
                     year.Visible = true;
                     OnlyYear.Visible = false;
-                    TbxTotalHours.Text = "";
-                    TbxTotalEarnings.Text = "";
+                    LblTotalHoursCalculation.Text = "";
+                    LblTotalEarningsCalculation.Text = "";
+                    LblHourPrice.Visible = false;
+                    LblWorkedHouresOnThisDay.Visible = false;
+                    TbxHourPrice.Visible = false;
+                    TbxWorkedHouresOnThisDay.Visible = false;
                     break;
 
                 case "a year":
-                    TbxThisPeriod.Visible = false;
+                 //   TbxThisPeriod.Visible = false;
+                    LblPeriod.Visible = false;
                     month.Visible = false;
                     year.Visible = false;
                     OnlyYear.Visible = true;
-                    TbxTotalHours.Text = "";
-                    TbxTotalEarnings.Text = "";
+                    LblTotalHoursCalculation.Text = "";
+                    LblTotalEarningsCalculation.Text = "";
+                    LblHourPrice.Visible = false;
+                    LblWorkedHouresOnThisDay.Visible = false;
+                    TbxHourPrice.Visible = false;
+                    TbxWorkedHouresOnThisDay.Visible = false;
                     break;
 
                 default:
@@ -386,9 +402,14 @@ namespace WorkHoursCalculator
         {
 
            
-                    TbxThisPeriod.Visible = false;
-                    month.Visible = true;
-                    year.Visible = true;
+                 //   TbxThisPeriod.Visible = false;
+            LblPeriod.Visible = false;
+            LblHourPrice.Visible = false;
+            LblWorkedHouresOnThisDay.Visible = false;
+            TbxHourPrice.Visible = false;
+            TbxWorkedHouresOnThisDay.Visible = false;
+            month.Visible = true;
+            year.Visible = true;
             // Goran
             SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
@@ -402,7 +423,7 @@ namespace WorkHoursCalculator
                     cmd.Parameters.AddWithValue("@myMonth", month.SelectedValue.ToString());
 
                     con.Open();
-                    TbxTotalEarnings.Text = cmd.ExecuteScalar().ToString();
+                    LblTotalEarningsCalculation.Text = cmd.ExecuteScalar().ToString();
             con.Close();
 
             SqlCommand cmd2 = new SqlCommand("select sum(Ukupno_odradeno_sati) From kalkulacije where Id_korisnik = @id2 and month(datum)=@myMonth2 and year(datum)=@myYear2", con);
@@ -412,7 +433,7 @@ namespace WorkHoursCalculator
             cmd2.Parameters.AddWithValue("@myMonth2", month.SelectedValue.ToString());
 
             con.Open();
-            TbxTotalHours.Text = cmd2.ExecuteScalar().ToString();
+            LblTotalHoursCalculation.Text = cmd2.ExecuteScalar().ToString();
             con.Close();
 
 
@@ -420,10 +441,15 @@ namespace WorkHoursCalculator
 
         protected void year_SelectedIndexChanged(object sender, EventArgs e)
         {
-                    TbxThisPeriod.Visible = false;
-                    month.Visible = true;
-                    year.Visible = true;
-                     OnlyYear.Visible = false;
+                 //   TbxThisPeriod.Visible = false;
+            LblPeriod.Visible = false;
+            LblHourPrice.Visible = false;
+            LblWorkedHouresOnThisDay.Visible = false;
+            TbxHourPrice.Visible = false;
+            TbxWorkedHouresOnThisDay.Visible = false;
+            month.Visible = true;
+            year.Visible = true;
+            OnlyYear.Visible = false;
             // Goran
             SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
@@ -437,7 +463,7 @@ namespace WorkHoursCalculator
                     cmd.Parameters.AddWithValue("@myMonth", month.SelectedValue.ToString());
 
                     con.Open();
-                    TbxTotalEarnings.Text = cmd.ExecuteScalar().ToString();
+                    LblTotalEarningsCalculation.Text = cmd.ExecuteScalar().ToString();
             con.Close();
 
             SqlCommand cmd2 = new SqlCommand("select sum(Ukupno_odradeno_sati) From kalkulacije where Id_korisnik = @id2 and month(datum)=@myMonth2 and year(datum)=@myYear2", con);
@@ -447,14 +473,16 @@ namespace WorkHoursCalculator
             cmd2.Parameters.AddWithValue("@myMonth2", month.SelectedValue.ToString());
 
             con.Open();
-            TbxTotalHours.Text = cmd2.ExecuteScalar().ToString();
+            LblTotalHoursCalculation.Text = cmd2.ExecuteScalar().ToString();
             con.Close();
 
         }
 
         protected void OnlyYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TbxThisPeriod.Visible = false;
+           // TbxThisPeriod.Visible = false;
+            LblPeriod.Visible = false;
+
             month.Visible = false;
             year.Visible = false;
             OnlyYear.Visible = true;
@@ -469,7 +497,7 @@ namespace WorkHoursCalculator
             cmd.Parameters.AddWithValue("@myYear", OnlyYear.SelectedValue.ToString());
 
             con.Open();
-            TbxTotalEarnings.Text = cmd.ExecuteScalar().ToString();
+            LblTotalEarningsCalculation.Text = cmd.ExecuteScalar().ToString();
             con.Close();
 
             SqlCommand cmd2 = new SqlCommand("select sum(Ukupno_odradeno_sati) From kalkulacije where Id_korisnik = @id2 and year(datum)=@myYear2", con);
@@ -477,7 +505,7 @@ namespace WorkHoursCalculator
             cmd2.Parameters.AddWithValue("@myYear2", OnlyYear.SelectedValue.ToString());
 
             con.Open();
-            TbxTotalHours.Text = cmd2.ExecuteScalar().ToString();
+            LblTotalHoursCalculation.Text = cmd2.ExecuteScalar().ToString();
             con.Close();
         }
     }

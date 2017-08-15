@@ -13,6 +13,15 @@ namespace WorkHoursCalculator {
     public partial class Basic {
         
         /// <summary>
+        /// LblWorkedHouresOnThisDay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblWorkedHouresOnThisDay;
+        
+        /// <summary>
         /// TbxWorkedHouresOnThisDay control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace WorkHoursCalculator {
         protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
         
         /// <summary>
+        /// LblHourPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblHourPrice;
+        
+        /// <summary>
         /// TbxHourPrice control.
         /// </summary>
         /// <remarks>
@@ -58,6 +76,15 @@ namespace WorkHoursCalculator {
         protected global::System.Web.UI.WebControls.CompareValidator CompareValidator2;
         
         /// <summary>
+        /// LblCalculationFor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblCalculationFor;
+        
+        /// <summary>
         /// ddlMode control.
         /// </summary>
         /// <remarks>
@@ -67,13 +94,13 @@ namespace WorkHoursCalculator {
         protected global::System.Web.UI.WebControls.DropDownList ddlMode;
         
         /// <summary>
-        /// TbxThisPeriod control.
+        /// LblPeriod control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TbxThisPeriod;
+        protected global::System.Web.UI.WebControls.Label LblPeriod;
         
         /// <summary>
         /// month control.
@@ -103,22 +130,40 @@ namespace WorkHoursCalculator {
         protected global::System.Web.UI.WebControls.DropDownList OnlyYear;
         
         /// <summary>
-        /// TbxTotalHours control.
+        /// LblTotalHours control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TbxTotalHours;
+        protected global::System.Web.UI.WebControls.Label LblTotalHours;
         
         /// <summary>
-        /// TbxTotalEarnings control.
+        /// LblTotalHoursCalculation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TbxTotalEarnings;
+        protected global::System.Web.UI.WebControls.Label LblTotalHoursCalculation;
+        
+        /// <summary>
+        /// LblTotalEarnings control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblTotalEarnings;
+        
+        /// <summary>
+        /// LblTotalEarningsCalculation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblTotalEarningsCalculation;
         
         /// <summary>
         /// BtnSaveChanges control.
