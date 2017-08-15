@@ -34,10 +34,10 @@ namespace WorkHoursCalculator
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
             // Goran
-            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
             // Adel
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
 
             SqlCommand cmd = new SqlCommand("select * from Kalkulacije where Id_korisnik = @id and Datum like @myDatum", con);
             cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
@@ -194,11 +194,11 @@ namespace WorkHoursCalculator
             SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
             // Adel
-<<<<<<< HEAD
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
-=======
+
+            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+
             //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
->>>>>>> cfafd18c5a18958d656df6a5d117a65666c4fdda
+
 
             SqlCommand cmd = new SqlCommand("select * from Kalkulacije where Id_korisnik = @id and Datum like @myDatum", con);
             cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
@@ -233,11 +233,11 @@ namespace WorkHoursCalculator
                     SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
                     // Adel
-<<<<<<< HEAD
-                    SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
-=======
+
+                    //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+
                     // SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
->>>>>>> cfafd18c5a18958d656df6a5d117a65666c4fdda
+
 
                     SqlCommand cmd = new SqlCommand("select * from Kalkulacije where Id_korisnik = @id and Datum like @myDatum", con);
                     cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);

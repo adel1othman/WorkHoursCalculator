@@ -36,7 +36,7 @@ namespace WorkHoursCalculator
 
                 //promijenite con
                 // Goran
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
                 // Adel
                 //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
@@ -112,7 +112,7 @@ namespace WorkHoursCalculator
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
         {
             //Goran con
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
             // Adel
             //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
@@ -156,7 +156,7 @@ namespace WorkHoursCalculator
             if (Calendar1.SelectedDate.Date == DateTime.MinValue)   //ovaj IF služi da provjeri ako nije selektiran datum, onda putem njega shvaća da je to današnji datum
             {
                 // Goran
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
                 // Adel
                 //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
@@ -216,7 +216,7 @@ namespace WorkHoursCalculator
             else       // normalno upisivanje po zabilježenom danu 
             {
                 // Goran
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
                 // Adel
                 //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
@@ -285,7 +285,7 @@ namespace WorkHoursCalculator
             TbxHourPrice.Text = "Hour Price";
 
             // Goran
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
             // Adel
             //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
@@ -411,7 +411,7 @@ namespace WorkHoursCalculator
             month.Visible = true;
             year.Visible = true;
             // Goran
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
             // Adel
             //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
@@ -451,7 +451,7 @@ namespace WorkHoursCalculator
             year.Visible = true;
             OnlyYear.Visible = false;
             // Goran
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
             // Adel
             //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
@@ -487,7 +487,7 @@ namespace WorkHoursCalculator
             year.Visible = false;
             OnlyYear.Visible = true;
             // Goran
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
             // Adel
             //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
