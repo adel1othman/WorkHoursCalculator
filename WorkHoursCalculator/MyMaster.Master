@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
+    <link href="master.css" rel="stylesheet" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://andwecode.com/wp-content/uploads/2015/10/jquery.leanModal.min_.js"></script>
 
@@ -15,23 +16,7 @@
     </asp:ContentPlaceHolder>
 
     <style type="text/css">
-        .auto-style4 {
-    position: absolute;
-    width: 80px;
-    height: auto;
-    left: 42%;
-    top: 20px;
-    background: #FFF;
-    
-        }
-        .auto-style5 {
-            position: absolute;
-    width: 80px;
-    height: auto;
-    left: 52%;
-    top: 20px;
-    background: #F4F4F2;
-        }
+       
          .auto-style6 {
             position: absolute;
     width: 80px;
@@ -47,13 +32,33 @@
     left: 80%;
     top: 20px;
         }
+       
     </style>
-</head>
+</head> 
+   
 <body>
     <form id="form1" runat="server">
+<%-- <section> --%>
+         <header id="header1">
+<div class="inner">
+<h1 class="logo">logo</h1>
+   
+<nav>
+        <ul>
+              <li><a href="Basic.aspx">Basic</a></li>
+            <li><a href="Advanced.aspx">Advanced</a></li>
+            <li><asp:Button ID="BtnLogout" runat="server" Text="Logout" CssClass="auto-style6" OnClick="BtnLogout_Click" Visible="False" /></li>
+       </ul>
+</nav>
+</div>
+</header>
 
+ 
+     <div
+          <br />
+        <br />
         <div id="container" class="container" runat="server">
-		<a id="modal_trigger" href="#modal" class="btn">Click here to Login or register</a>
+		<a id="modal_trigger" href="#modal" class="btn">Click here to <br /> LOGIN or REGISTER</a>
             <script src="modal.js"></script>
             <div id="modal" class="popupContainer" style="display:none;">
 				<header class="popupHeader">
@@ -186,16 +191,20 @@
 				</section>
 		</div>
 </div>
-        <asp:Button ID="Button1" runat="server" Text="Basic" CssClass="auto-style4" PostBackUrl="~/Basic.aspx" CausesValidation="False" />
-         <asp:Button ID="Button2" runat="server" Text="Advanced" CssClass="auto-style5" PostBackUrl="~/Advanced.aspx" CausesValidation="False" />
-        <asp:Button ID="BtnLogout" runat="server" Text="Logout" CssClass="auto-style6" OnClick="BtnLogout_Click" Visible="False" CausesValidation="False" />
+       
         <asp:Label ID="LblWelcome" runat="server" Text="Label" CssClass="lblWelcomeStyle" Visible="False" />
         
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
-    </div>
+    </div> 
+
+     </div>
+<%--  </section>--%>
     </form>
+ 
 </body>
+    
+    
 </html>

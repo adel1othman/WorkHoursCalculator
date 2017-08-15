@@ -69,6 +69,7 @@
     <Content Include="Advanced.aspx" />
     <Content Include="Basic.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="master.css" />
     <Content Include="modal.js" />
     <Content Include="packages.config" />
     <Content Include="MyMaster.Master" />

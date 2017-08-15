@@ -1,7 +1,7 @@
 ﻿body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
-    color: #666;
+    color: #393939;
 }
 
 h1 {
@@ -27,64 +27,78 @@ h1 {
     height: auto;
     left: 45%;
     top: 60px;
-    background: #FFF;
+    background-color:white;
+    color: #393939;
 }
 
 #modal_trigger {
-    margin: 40px auto;
-    width: 200px;
+    margin: 50px auto;
+    width: 250px;
     display: block;
-    border: 1px solid #DDD;
     border-radius: 4px;
+    font-size: 20px;
+    border: 1.5px solid #FF5A09;
+    color: #393939;
+    background-color: #FF5A09;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .btn {
     padding: 10px 20px;
-    background: #F4F4F2;
+    background-color: #dddfd4;
+    width: 80px;
+    color: #102A2E;
+    border-radius: 4px;
+    font-size: 15px;
 }
 
 .btn_red {
-    background: #ED6347;
-    color: #FFF;
+    background: #FF7911;
+    color: white;
 }
 
 .btn:hover {
-    background: #E4E4E2;
+    background-color: silver;
+
 }
 
 .btn_red:hover {
-    background: #C12B05;
+    background: #C24B0D;
 }
 
 a.btn {
-    color: #666;
+    color: #393939;
     text-align: center;
     text-decoration: none;
 }
 
 a.btn_red {
-    color: #FFF;
+    color: white;
+    text-align: center;
+    text-decoration: none;
 }
 
 .one_half {
-    width: 50%;
+    width: 45%;
     display: block;
     float: left;
+    margin-left: 5%;
 }
 
     .one_half.last {
         width: 45%;
-        margin-left: 5%;
+        margin-left: 3.5%;
     }
 /* Popup Styles*/
 
 .popupHeader {
     font-size: 16px;
     text-transform: uppercase;
+    color: white;
 }
 
 .popupHeader {
-    background: #F4F4F2;
+    background: #FF7911;
     position: relative;
     padding: 10px 20px;
     border-bottom: 1px solid #DDD;
@@ -96,9 +110,9 @@ a.btn_red {
         right: 0;
         top: 0;
         padding: 10px 15px;
-        background: #E4E4E2;
+        background: #393939;
         cursor: pointer;
-        color: #aaa;
+        color: #FF7911;
         font-size: 16px;
     }
 
@@ -166,8 +180,8 @@ a.btn_red {
 
     .action_btns a {
         display: block;
-    height: 29px;
-}
+        height: 29px;
+    }
 /* User Login Form */
 
 .user_login {
