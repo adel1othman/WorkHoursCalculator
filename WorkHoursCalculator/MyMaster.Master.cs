@@ -62,14 +62,25 @@ namespace WorkHoursCalculator
             string username = Username2.Value;
             string email = Email.Value;
             string password = Password1.Value;
+<<<<<<< HEAD
             // promijenite con
             SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+=======
+            // Goran
+            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+
+            // Adel
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+
+            con.Open();
+            
+>>>>>>> cfafd18c5a18958d656df6a5d117a65666c4fdda
             SqlCommand cmd = new SqlCommand("insert into Korisnici values(@username, @password, @email)", con);
             cmd.Parameters.AddWithValue("@username", username);
             cmd.Parameters.AddWithValue("@password", password);
             cmd.Parameters.AddWithValue("@email", email);
             int rowsAffected = 0;
-            con.Open();
+           
             try
             {
                 rowsAffected = cmd.ExecuteNonQuery();
