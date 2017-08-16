@@ -1,8 +1,9 @@
 ﻿body {
+    width:100%;
     margin: 0;
     border: 0;
     padding: 0;
-    height: 1500px;
+    height: 900px;
     line-height: 1.5;
     background-color: #393939;
 }
@@ -24,7 +25,6 @@
     position: relative;
     height: 200px;
     background-image: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-    box-shadow: 20px 36px 53px -1px rgba(250,245,250,1);
     clip-path: polygon( 0 0, 100% 0, 100% 100%, 0 calc(100% - 5vw) );
 }
 
