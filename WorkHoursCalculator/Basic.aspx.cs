@@ -36,13 +36,13 @@ namespace WorkHoursCalculator
 
                 //promijenite con
                 // Goran
-                //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
                 // Adel                
                 //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");     
 
                 //Ivana
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+               // SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
 
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
@@ -60,7 +60,8 @@ namespace WorkHoursCalculator
 
 
                     cmd.Parameters.AddWithValue("@V1", converted);
-                    cmd.CommandText = "select * from Kalkulacije where Datum LIKE @V1";
+                    cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+                    cmd.CommandText = "select * from Kalkulacije where Datum LIKE @V1 and Id_korisnik = @id";
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -115,13 +116,13 @@ namespace WorkHoursCalculator
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
         {
             // Goran
-            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
             // Adel                
             //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");     
 
             //Ivana
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
 
             // Opens a Database Connection
             con.Open();
@@ -162,13 +163,13 @@ namespace WorkHoursCalculator
             if (Calendar1.SelectedDate.Date == DateTime.MinValue)   //ovaj IF služi da provjeri ako nije selektiran datum, onda putem njega shvaća da je to današnji datum
             {
                 // Goran
-                //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
                 // Adel                
                 //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");     
 
                 //Ivana
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+                //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
 
                 SqlCommand cmd = new SqlCommand("select * from Kalkulacije where Id_korisnik = @id and Datum like @myDatum", con);
                 cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
@@ -225,13 +226,13 @@ namespace WorkHoursCalculator
             else       // normalno upisivanje po zabilježenom danu 
             {
                 // Goran
-                //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
                 // Adel                
                 //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");     
 
                 //Ivana
-                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+                //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
 
                 SqlCommand cmd = new SqlCommand("select * from Kalkulacije where Id_korisnik = @id and Datum like @myDatum", con);
                 cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
@@ -292,24 +293,35 @@ namespace WorkHoursCalculator
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)    // ovaj dio služi samo za povlačenje podataka sa odabranim datumom u TbxThisPeriod, TbxTotalHours i LblTotalEarningsCalculation
         {
-            //promijenite con
+            // vraćanje dropdowna na 1 day format prilikom biranja dana iz kalendara 
+            ddlMode.SelectedIndex = 0;
+            year.Visible = false;
+            OnlyYear.Visible = false;
+            month.Visible = false;
+            LblWorkedHouresOnThisDay.Visible = true;
+            LblHourPrice.Visible = true;
+            TbxHourPrice.Visible = true;
+            TbxWorkedHouresOnThisDay.Visible = true;
+            LblPeriod.Visible = true;
+            BtnSaveChanges.Visible = true;
+
+
             TbxWorkedHouresOnThisDay.Text = "Worked Houres On This Day";
             TbxHourPrice.Text = "Hour Price";
-
+            //promijenite con
             // Goran
-            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
             // Adel                
             //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");     
 
             //Ivana
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
 
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
             string datum = Calendar1.SelectedDate.ToShortDateString();
-           // TbxThisPeriod.Text = datum;
             LblPeriod.Text = datum;
 
             try
@@ -320,21 +332,26 @@ namespace WorkHoursCalculator
 
 
                 cmd.Parameters.AddWithValue("@V1", converted);
-                cmd.CommandText = "select * from Kalkulacije where Datum LIKE @V1";
+                cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);
+                cmd.CommandText = "select * from Kalkulacije where Datum LIKE @V1 and Id_korisnik = @id";
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        // čitanje iz baze i upisivanje u tbx TbxTotalHours
+                        // čitanje iz baze i upisivanje u lblTotalHours
                         LblTotalHoursCalculation.Text = (reader["Ukupno_odradeno_sati"].ToString());
                         var TotalHours = 0;
                         Int32.TryParse(LblTotalHoursCalculation.Text, out TotalHours);
+                        TbxWorkedHouresOnThisDay.Text = (reader["Ukupno_odradeno_sati"].ToString());
+
+
 
                         // čitanje iz baze
                         var TotalEarnings = (reader["Satnica"].ToString());
                         var _TotalEarnings = 0;
                         Int32.TryParse(TotalEarnings, out _TotalEarnings);
+                        TbxHourPrice.Text = TotalEarnings;
 
                         // upisivanje u LblTotalEarningsCalculation
                         var Ukupno = TotalHours * _TotalEarnings;
@@ -345,7 +362,6 @@ namespace WorkHoursCalculator
                     {
                         LblTotalHoursCalculation.Text = "U haven't worked this day";
                         LblTotalEarningsCalculation.Text = "U haven't worked this day";
-                       // TbxThisPeriod.Visible = true;
                         LblPeriod.Visible = true;
                         month.Visible = false;
                         year.Visible = false;
@@ -390,6 +406,7 @@ namespace WorkHoursCalculator
                     LblWorkedHouresOnThisDay.Visible = false;
                     TbxHourPrice.Visible = false;
                     TbxWorkedHouresOnThisDay.Visible = false;
+                    BtnSaveChanges.Visible = false;
                     break;
 
                 case "a year":
@@ -404,6 +421,7 @@ namespace WorkHoursCalculator
                     LblWorkedHouresOnThisDay.Visible = false;
                     TbxHourPrice.Visible = false;
                     TbxWorkedHouresOnThisDay.Visible = false;
+                    BtnSaveChanges.Visible = false;
                     break;
 
                 default:
@@ -426,13 +444,13 @@ namespace WorkHoursCalculator
             month.Visible = true;
             year.Visible = true;
             // Goran
-            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
             // Adel                
             //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");     
 
             //Ivana
-            SqlConnection con = new SqlConnection(@"DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+            //SqlConnection con = new SqlConnection(@"DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
 
             SqlCommand cmd = new SqlCommand("select sum(zaradeno) From kalkulacije where Id_korisnik = @id and month(datum)=@myMonth and year(datum)=@myYear", con);
 
@@ -469,13 +487,13 @@ namespace WorkHoursCalculator
             year.Visible = true;
             OnlyYear.Visible = false;
             // Goran
-            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
             // Adel                
             //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");     
 
             //Ivana
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
 
             SqlCommand cmd = new SqlCommand("select sum(zaradeno) From kalkulacije where Id_korisnik = @id and month(datum)=@myMonth and year(datum)=@myYear", con);
 
@@ -508,13 +526,13 @@ namespace WorkHoursCalculator
             year.Visible = false;
             OnlyYear.Visible = true;
             // Goran
-            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
             // Adel                
             //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-FR7RPIJ\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");     
 
             //Ivana
-            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
+            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AGVKO2V\SQLEXPRESS;Initial Catalog=WorkHourCalculator;Integrated Security=True;Pooling=False");
 
             SqlCommand cmd = new SqlCommand("select sum(zaradeno) From kalkulacije where Id_korisnik = @id and year(datum)=@myYear", con);
             cmd.Parameters.AddWithValue("@id", (int)Session["idKor"]);

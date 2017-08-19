@@ -17,14 +17,7 @@
 
     <style type="text/css">
        
-         .auto-style6 {
-            position: absolute;
-    width: 80px;
-    height: auto;
-    left: 90%;
-    top: 20px;
-    background: #F4F4F2;
-        }
+
          .lblWelcomeStyle {
             position: absolute;
     width: auto;
@@ -47,7 +40,7 @@
         <ul>
               <li><a href="Basic.aspx">Basic</a></li>
             <li><a href="Advanced.aspx">Advanced</a></li>
-            <li><asp:Button ID="BtnLogout" runat="server" Text="Logout" CssClass="auto-style6" OnClick="BtnLogout_Click" Visible="False" /></li>
+            <li><asp:Button ID="BtnLogout" runat="server" Text="Logout" OnClick="BtnLogout_Click" Visible="False" BackColor="Red" ForeColor="#66FF99"/></li>
        </ul>
 </nav>
 </div>
