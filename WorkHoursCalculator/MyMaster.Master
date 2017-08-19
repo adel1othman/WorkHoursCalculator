@@ -40,7 +40,7 @@
         <ul>
               <li><a href="Basic.aspx">Basic</a></li>
             <li><a href="Advanced.aspx">Advanced</a></li>
-            <li><asp:Button ID="BtnLogout" runat="server" Text="Logout" OnClick="BtnLogout_Click" Visible="False" BackColor="Red" ForeColor="#66FF99"/></li>
+            <li><a><asp:Button ID="BtnLogout" runat="server" Text="Logout" OnClick="BtnLogout_Click" Visible="False" BackColor="Transparent" ForeColor="#FF5A09" BorderStyle="None" Font-Size="X-Large"/></a></li>
        </ul>
 </nav>
 </div>
