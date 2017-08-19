@@ -36,13 +36,11 @@ header::after {
 
 .logo {
     float:left;
-    margin: 0;
     padding: 100px 0;
     margin-left: 10%;
     padding-top:26px;
     font: 50px "Arial";
     color: #FF5A09;
-    text-align: left;
 }
 
 
