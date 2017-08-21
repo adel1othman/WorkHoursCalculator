@@ -36,9 +36,7 @@ header::after {
 
 .logo {
     float:left;
-    padding: 100px 0;
-    margin-left: 10%;
-    padding-top:26px;
+    margin-left: 5%;
     font: 50px "Arial";
     color: #FF5A09;
 }

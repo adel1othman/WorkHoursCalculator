@@ -27,6 +27,7 @@
         <asp:ListItem>Save My Calculations</asp:ListItem>
         <asp:ListItem>Don&#39;t Save This Calculation</asp:ListItem>
     </asp:DropDownList>
+    <asp:Button ID="Button1" runat="server" Text="Button" />
     <br />
     <br />
     
@@ -68,4 +69,7 @@
             </td>
         </tr>
     </table>
+
+    <br />
+
 </asp:Content>
