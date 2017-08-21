@@ -35,10 +35,12 @@
          <header id="header1">
 <div class="inner">
 <h1 class="logo">logo</h1>
+
+    <asp:Label ID="LblWelcome" runat="server" Text="Label" CssClass="lblWelcomeStyle" Visible="False" />
    
 <nav>
         <ul>
-              <li><a href="Basic.aspx">Basic</a></li>
+            <li><a href="Basic.aspx">Basic</a></li>
             <li><a href="Advanced.aspx">Advanced</a></li>
             <li><a><asp:Button ID="BtnLogout" runat="server" Text="Logout" OnClick="BtnLogout_Click" Visible="False" BackColor="Transparent" ForeColor="#FF5A09" BorderStyle="None" Font-Size="X-Large"/></a></li>
        </ul>
@@ -184,8 +186,6 @@
 				</section>
 		</div>
 </div>
-       
-        <asp:Label ID="LblWelcome" runat="server" Text="Label" CssClass="lblWelcomeStyle" Visible="False" />
         
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
