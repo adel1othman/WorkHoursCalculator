@@ -31,6 +31,7 @@ namespace WorkHoursCalculator
                 month.Visible = false;
                 year.Visible = false;
                 OnlyYear.Visible = false;
+                GridView1.Visible = false;
 
                 // ovaj dio služi samo za povlačenje podataka sa današnjim datumom u TbxThisPeriod, TbxTotalHours i LblTotalEarningsCalculation
 
@@ -304,6 +305,7 @@ namespace WorkHoursCalculator
             TbxWorkedHouresOnThisDay.Visible = true;
             LblPeriod.Visible = true;
             BtnSaveChanges.Visible = true;
+            GridView1.Visible = false;
 
 
             TbxWorkedHouresOnThisDay.Text = "Worked Houres On This Day";
@@ -407,6 +409,7 @@ namespace WorkHoursCalculator
                     TbxHourPrice.Visible = false;
                     TbxWorkedHouresOnThisDay.Visible = false;
                     BtnSaveChanges.Visible = false;
+                    GridView1.Visible = false;
                     break;
 
                 case "a year":
@@ -422,6 +425,7 @@ namespace WorkHoursCalculator
                     TbxHourPrice.Visible = false;
                     TbxWorkedHouresOnThisDay.Visible = false;
                     BtnSaveChanges.Visible = false;
+                    GridView1.Visible = false;
                     break;
 
                 default:
@@ -443,6 +447,7 @@ namespace WorkHoursCalculator
             TbxWorkedHouresOnThisDay.Visible = false;
             month.Visible = true;
             year.Visible = true;
+            GridView1.Visible = true;
             // Goran
             SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
@@ -470,6 +475,14 @@ namespace WorkHoursCalculator
 
             con.Open();
             LblTotalHoursCalculation.Text = cmd2.ExecuteScalar().ToString();
+            SqlCommand cmd3 = new SqlCommand("SELECT convert(varchar, Datum, 103) as Datum, Ukupno_odradeno_sati, satnica, zaradeno From kalkulacije where Id_korisnik = @id3 and month(datum)=@myMonth3 and year(datum)=@myYear3", con);
+            cmd3.Parameters.AddWithValue("@id3", (int)Session["idKor"]);
+            cmd3.Parameters.AddWithValue("@myYear3", year.SelectedValue.ToString());
+            cmd3.Parameters.AddWithValue("@myMonth3", month.SelectedValue.ToString());
+            SqlDataReader dr = cmd3.ExecuteReader();
+            GridView1.DataSource = dr;
+            GridView1.DataBind();
+          
             con.Close();
 
 
@@ -486,6 +499,7 @@ namespace WorkHoursCalculator
             month.Visible = true;
             year.Visible = true;
             OnlyYear.Visible = false;
+            GridView1.Visible = true;
             // Goran
             SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
@@ -513,6 +527,13 @@ namespace WorkHoursCalculator
 
             con.Open();
             LblTotalHoursCalculation.Text = cmd2.ExecuteScalar().ToString();
+            SqlCommand cmd3 = new SqlCommand("SELECT convert(varchar, Datum, 103) as Datum, Ukupno_odradeno_sati, satnica, zaradeno From kalkulacije where Id_korisnik = @id3 and month(datum)=@myMonth3 and year(datum)=@myYear3", con);
+            cmd3.Parameters.AddWithValue("@id3", (int)Session["idKor"]);
+            cmd3.Parameters.AddWithValue("@myYear3", year.SelectedValue.ToString());
+            cmd3.Parameters.AddWithValue("@myMonth3", month.SelectedValue.ToString());
+            SqlDataReader dr = cmd3.ExecuteReader();
+            GridView1.DataSource = dr;
+            GridView1.DataBind();
             con.Close();
 
         }
@@ -525,6 +546,7 @@ namespace WorkHoursCalculator
             month.Visible = false;
             year.Visible = false;
             OnlyYear.Visible = true;
+            GridView1.Visible = true;
             // Goran
             SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-K1I0JMC\SQLEXPRESS;Initial Catalog=WorkHours;Integrated Security=True;Pooling=False");
 
@@ -548,6 +570,12 @@ namespace WorkHoursCalculator
 
             con.Open();
             LblTotalHoursCalculation.Text = cmd2.ExecuteScalar().ToString();
+            SqlCommand cmd3 = new SqlCommand("SELECT convert(varchar, Datum, 103) as Datum, Ukupno_odradeno_sati, satnica, zaradeno From kalkulacije where Id_korisnik = @id3 and year(datum)=@myYear3", con);
+            cmd3.Parameters.AddWithValue("@id3", (int)Session["idKor"]);
+            cmd3.Parameters.AddWithValue("@myYear3", OnlyYear.SelectedValue.ToString());
+            SqlDataReader dr = cmd3.ExecuteReader();
+            GridView1.DataSource = dr;
+            GridView1.DataBind();
             con.Close();
         }
     }
