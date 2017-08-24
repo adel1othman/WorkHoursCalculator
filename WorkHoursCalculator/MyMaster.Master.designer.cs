@@ -58,6 +58,24 @@ namespace WorkHoursCalculator {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl container;
         
         /// <summary>
+        /// button_fb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button button_fb;
+        
+        /// <summary>
+        /// button_google control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button button_google;
+        
+        /// <summary>
         /// Username control.
         /// </summary>
         /// <remarks>

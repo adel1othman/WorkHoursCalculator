@@ -65,15 +65,15 @@
 						<!-- Social Login -->
 						<div class="social_login">
 								<div class="">
-										<a href="#" class="social_box fb">
+										<a class="social_box fb">
 												<span class="icon"><i class="fa fa-facebook"></i></span>
-												<span class="icon_title">Connect with Facebook</span>
+												<span class="icon_title"><asp:Button ID="button_fb" runat="server" Text="Connect with Facebook" BorderStyle="None" BackColor="Transparent" Height="100%" style="margin-top: 0px" Width="100%" CausesValidation="False" OnClick="button_fb_Click" /></span>
 
 										</a>
 
-										<a href="#" class="social_box google">
+										<a class="social_box google">
 												<span class="icon"><i class="fa fa-google-plus"></i></span>
-												<span class="icon_title">Connect with Google</span>
+												<span class="icon_title"><asp:Button ID="button_google" runat="server" Text="Connect with Google" BorderStyle="None" BackColor="Transparent" Height="100%" style="margin-top: 0px" Width="100%" CausesValidation="False" OnClick="button_google_Click" /></span>
 										</a>
 								</div>
 
