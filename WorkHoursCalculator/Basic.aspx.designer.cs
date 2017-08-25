@@ -13,13 +13,13 @@ namespace WorkHoursCalculator {
     public partial class Basic {
         
         /// <summary>
-        /// LblWorkedHouresOnThisDay control.
+        /// Calendar1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblWorkedHouresOnThisDay;
+        protected global::System.Web.UI.WebControls.Calendar Calendar1;
         
         /// <summary>
         /// TbxWorkedHouresOnThisDay control.
@@ -31,15 +31,6 @@ namespace WorkHoursCalculator {
         protected global::System.Web.UI.WebControls.TextBox TbxWorkedHouresOnThisDay;
         
         /// <summary>
-        /// Calendar1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
-        
-        /// <summary>
         /// CompareValidator1 control.
         /// </summary>
         /// <remarks>
@@ -47,6 +38,15 @@ namespace WorkHoursCalculator {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
+        
+        /// <summary>
+        /// LblWorkedHouresOnThisDay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblWorkedHouresOnThisDay;
         
         /// <summary>
         /// LblHourPrice control.
@@ -85,15 +85,6 @@ namespace WorkHoursCalculator {
         protected global::System.Web.UI.WebControls.Label LblCalculationFor;
         
         /// <summary>
-        /// ddlMode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMode;
-        
-        /// <summary>
         /// LblPeriod control.
         /// </summary>
         /// <remarks>
@@ -101,6 +92,15 @@ namespace WorkHoursCalculator {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblPeriod;
+        
+        /// <summary>
+        /// ddlMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMode;
         
         /// <summary>
         /// month control.
@@ -173,6 +173,15 @@ namespace WorkHoursCalculator {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnSaveChanges;
+        
+        /// <summary>
+        /// BtnDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnDelete;
         
         /// <summary>
         /// GridView1 control.
